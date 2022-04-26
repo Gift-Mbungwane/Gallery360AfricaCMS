@@ -1,10 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ArtistComponent } from 'src/components/artist/artist.component';
+import { ExhibitionComponent } from 'src/components/exhibition/exhibition.component';
+import { MarketApprovalComponent } from 'src/components/market-approval/market-approval.component';
+import { PaymentGatewayComponent } from 'src/components/payment-gateway/payment-gateway.component';
+import { SignInScreenComponent } from 'src/components/sign-in-screen/sign-in-screen.component';
+import { SignUpScreenComponent } from 'src/components/sign-up-screen/sign-up-screen.component';
+import { UserComponent } from 'src/components/user/user.component';
 
-const routes: Routes = [];
+export const routes: Routes = [
+  { path: '', redirectTo: 'SignIn', pathMatch: 'full' },
+  { path: 'SignIn', component: SignInScreenComponent },
+  { path: 'SignUp', component: SignUpScreenComponent },
+  { path: 'Market', component: MarketApprovalComponent },
+  { path: 'Exhibition', component: ExhibitionComponent },
+  { path: 'User', component: UserComponent },
+  { path: 'Artist', component: ArtistComponent },
+  { path: 'Payment', component: PaymentGatewayComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

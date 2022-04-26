@@ -1,0 +1,39 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>market-screen</title>
+    <base href="/">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <mat-grid-list cols="3" rowHeight="60px" >
+        <mat-grid-tile *ngFor="let data of datas" [colspan]="1" [rowspan]="5" 
+            >
+            <mat-card style="max-width: 800px; margin-bottom: 8px;">
+                <mat-card-title-group style="display: flex;justify-content: space-between;">
+                <mat-card-title-group style="display: flex; flex-direction: column;">
+                    <mat-card-title>{{data.artType}}</mat-card-title>
+                    <mat-card-subtitle>{{data.artName}}</mat-card-subtitle>
+                    <div style="margin: -10; margin-right: 10vh;">
+                    <button mat-stroked-button color="primary">Approve</button>
+                    <button mat-stroked-button color="warn">Decline</button>
+                    </div>
+                </mat-card-title-group>
+                <mat-card-title-group>
+                    <img mat-card-xl-image src="{{data.artUrl}}" >
+                </mat-card-title-group>
+                </mat-card-title-group>
+                <mat-card-title-group></mat-card-title-group>
+                <mat-card-content >
+                    {{data.description}}
+                </mat-card-content>
+            </mat-card>
+        <!-- <img src='{{data.artUrl}}' style="background-color: black;"/> -->
+        </mat-grid-tile>
+    </mat-grid-list>
+
+</body>
+</html>

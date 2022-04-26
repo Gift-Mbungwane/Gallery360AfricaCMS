@@ -1,0 +1,77 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Sign-IUp-Screen</title>
+    <base href="/">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div style="display: flex; flex-direction: row;">
+    <div style="display: flex;
+      height: 100vh;
+      justify-content: 'center';
+      align-content: 'center';
+      background : linear-gradient(#CEB89E, #616161);
+      width: '50%';
+      
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;">
+    
+        <div style="display: flex;
+      flex-direction: column;
+      
+      align-self: 'center';
+      height: 100vh;">
+            <h3 style="color: aliceblue; font-family: 'Italic'; font-size: 12vh; align-self: 'center';">Sign Up</h3>
+            <div style="display:contents; justify-content: space-between; width: calc(100vw - 480px);">
+                <div class="formGroup">
+                    <input type="text" class="formControl" placeholder="Doe Nkosinathi" #userName required
+                        style="display: flex; border-radius: 8ch; height: 5vh; width: 40vh;">
+                </div>
+                <div class="formGroup">
+                    <input type="email" class="formControl" placeholder="email@admin.com" #userEmail required
+                        style="display: flex; border-radius: 8ch; height: 5vh; width: 40vh;margin-top: 1vh;">
+                </div>
+    
+                <div class="formGroup">
+                    <input type="password" class="formControl" placeholder="Password" #userPassword required
+                        style="display: flex; border-radius: 8ch; height: 5vh; width: 40vh; margin-top: 1vh;">
+                </div>
+            </div>
+            <button style="border-radius: 8ch; height: 7vh; width: 42vh; margin-top: 5vh;" (click)="authenticationService.onSignUp(userName.value, userEmail.value, userPassword.value)">
+                <span style="align-self: center;">submit</span>
+            </button>
+            <p style="color: '#FFFFFF'; align-self: center; margin-bottom: 5vh;">Have an account?<a [routerLink]="['/SignIn']" style="color: 'rgba(34, 24, 14, 1)';"> Sign In</a></p>
+        </div>
+    
+    </div>
+        <div style="display: flex;
+          width: calc(100vw - 400px);
+          height: 100vh;
+          flex-direction: 'column';
+          justify-content: 'space-between';
+          background-size:cover;
+          background-image: url('../../assets/images/Splashscreen.png');
+          border-radius: 10px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;">
+            <!-- <div style="display:flex; flex-direction:row;" > -->
+            <!-- <div style="display :flex; align-self: flex-start;border: 2px solid; width: 120vh; flex: 1 0 0 auto;"> -->
+        
+            <img src="../../assets/images/splash/logo.png" style="display: flex;
+                           height: 50vh;
+                        align-self: 'center';
+                        margin-top: 15vh;
+                        size: inherit;
+                       " />
+            <h1 style="align-self: center;"><span style="font-weight: bold;font-size: 54px; font-family: 'Poppins';">Gallery
+                    360</span><br><span style="align-self: center; margin-left: 15vh;">Africa</span></h1>
+        </div>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,78 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Sign-In-Screen</title>
+    <base href="/">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div style="display: flex; flex-direction: row;">
+<div style="display: flex;
+  width: calc(100vw - 400px);
+  height: 100vh;
+  flex-direction: 'column';
+  justify-content: 'space-between';
+  background-size:cover;
+  background-image: url('../../assets/images/Splashscreen.png');">
+    <!-- <div style="display:flex; flex-direction:row;" > -->
+    <!-- <div style="display :flex; align-self: flex-start;border: 2px solid; width: 120vh; flex: 1 0 0 auto;"> -->
+        
+            <img 
+            src="../../assets/images/splash/logo.png" 
+            style="display: flex;
+                   height: 50vh;
+                align-self: 'center';
+                margin-top: 15vh;
+                size: inherit;
+               " />
+            <h1 style="align-self: center;"><span style="font-weight: bold;font-size: 54px; font-family: 'Poppins';">Gallery 360</span><br><span style="align-self: center; margin-left: 15vh;">Africa</span></h1>
+        </div>
+
+<div style="display: flex;
+  height: 100vh;
+  justify-content: 'center';
+  align-content: 'center';
+  background : linear-gradient(#CEB89E, #616161);
+  width: '50%';
+  border-radius: 10px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;">
+
+  <div style="display: flex;
+  flex-direction: column;
+  
+  align-self: 'center';
+  height: 100vh;">
+<h3 style="color: aliceblue; font-family: 'Italic'; font-size: 12vh; align-self: 'center';">Sign In</h3>
+<div style="display:contents; justify-content: space-between; width: calc(100vw - 480px);">
+    <form class="example-form">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput [formControl]="emailFormControl" #email placeholder="Ex. pat@example.com">
+            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('required')">
+                Email is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+    </form>
+
+    
+    <div class="formGroup">
+        <input type="password" class="formControl" placeholder="Password" #userPassword required
+            style="display: flex; border-radius: 8ch; height: 5vh; width: 40vh; margin-top: 1vh;">
+    </div>
+    </div>
+    <button style="border-radius: 8ch; height: 7vh; width: 42vh; margin-top: 5vh;" (click)="authenticationService.onSignIn(email.value, userPassword.value)">
+        <span style="align-self: center;">signin</span>
+    </button>
+    <p style="color: '#FFFFFF'; align-self: center; margin-bottom: 5vh;">Don’t have an account?<a [routerLink]="['/SignUp']"
+            style="color: 'rgba(34, 24, 14, 1)';"> Sign Up</a></p></div>
+</div>
+</div>
+</body>
+
+</html>
