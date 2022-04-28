@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "Gallery360AfricaCMS",
+    "public": ".",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -12,12 +12,12 @@
         "destination": "/index.html"
       }
     ]
+  }, "redirects": {
+      "source": "/payment",
+      "destination" : "/index.html",
+      "type" : 302
   },
-  "redirects": {
-    "source": "/payment",
-    "destination": "/index.html",
-    "type": 302
-  },
+
   "emulators": {
     "hosting": {
       "port": 4242
