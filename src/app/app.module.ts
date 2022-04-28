@@ -13,6 +13,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 //Firebase
 import { initializeApp } from 'firebase/app';
@@ -69,6 +70,7 @@ initializeApp(firebaseConfig);
     MatIconModule,
     MatTabsModule,
     MatInputModule,
+    NgxPayPalModule,
   ],
 
   exports: [],
