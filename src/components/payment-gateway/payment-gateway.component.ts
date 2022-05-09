@@ -31,15 +31,15 @@ export class PaymentGatewayComponent implements OnInit {
     // this.uid = this.route.params.subscribe((uid) => {
     //   return uid.id;
     // });
-    this.uid = this.route.snapshot.paramMap.get('id');
+    // this.uid = this.route.snapshot.paramMap.get('id');
     //this.userName = this.route.snapshot.paramMap.get('A');
   }
 
   ngOnInit(): void {
-    // this.route.queryParams.subscribe((params) => {
-    //   this.uid = params.id;
-    //   console.log(params.id);
-    // });
+    this.route.queryParams.subscribe((params) => {
+      this.uid = params.id;
+      console.log(params.id);
+    });
     this.initConfig();
     onSnapshot(
       query(
