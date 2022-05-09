@@ -5,13 +5,14 @@
     <span>Gallery 360 Africa</span>
     
     <span class="example-spacer"></span>
-    <button mat-button class="example-icon" style="right: 30vh;" (click)="routeToTheNextScreen('Markets')" aria-label="Example icon-button with share icon">
+    <div style="display: flex; align-self:flex-end;">
+    <button mat-button class="example-icon" style="right: 10vh;" (click)="routeToTheNextScreen('Markets')" aria-label="Example icon-button with share icon">
         Market
     </button>
-    <button mat-button class="example-icon" style="right: 25vh;" (click)="routeToTheNextScreen('Exhibitions')" aria-label="Example icon-button with share icon">
+    <button mat-button class="example-icon" style="right: 10vh;" (click)="routeToTheNextScreen('Exhibitions')" aria-label="Example icon-button with share icon">
         Exhibitions
     </button>
-    <button mat-button class="example-icon" style="right: 20vh;" (click)="routeToTheNextScreen('Users')" aria-label="Example icon-button with share icon">
+    <button mat-button class="example-icon" style="right: 10vh;" (click)="routeToTheNextScreen('Users')" aria-label="Example icon-button with share icon">
         Users
     </button>
     <button mat-button class="example-icon" style="right: 10vh;" (click)="routeToTheNextScreen('Artists')" aria-label="Example icon-button with share icon">
@@ -21,6 +22,7 @@
         aria-label="Example icon-button with share icon">
         Payment
     </button>
+    </div>
     <!-- <button mat-icon-button class="example-icon favorite-icon" (click)="" aria-label="Example icon-button with heart icon">
         <mat-icon>favorite</mat-icon>
     </button>

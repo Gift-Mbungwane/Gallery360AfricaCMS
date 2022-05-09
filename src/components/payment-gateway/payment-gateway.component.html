@@ -1,2 +1,18 @@
-<p>payment-gateway works!</p>
-<ngx-paypal [config]="payPalConfig"></ngx-paypal>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>exhibition</title>
+    <base href="/">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <img src="../../assets/images/paypal.png" style="display: flex; align-self:center;"/>
+    <div style="display: flex; align-self: center; width: '80%';">
+    <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+</div>
+</body>
+
+</html>

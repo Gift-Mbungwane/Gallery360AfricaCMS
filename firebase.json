@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": ".",
+    "public": "dist/Gallery360AfricaCMS",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -14,7 +14,7 @@
     ]
   }, "redirects": {
       "source": "/payment",
-      "destination" : "/index.html",
+      "destination" : "./index.html",
       "type" : 302
   },
 

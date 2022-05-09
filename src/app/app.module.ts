@@ -30,6 +30,8 @@ import { ArtistComponent } from 'src/components/artist/artist.component';
 import { UserComponent } from 'src/components/user/user.component';
 import { ExhibitionComponent } from 'src/components/exhibition/exhibition.component';
 import { PaymentGatewayComponent } from 'src/components/payment-gateway/payment-gateway.component';
+import { PaymentFailureComponent } from 'src/components/payment-failure/payment-failure.component';
+import { PaymentSuccessComponent } from 'src/components/payment-success/payment-success.component';
 
 //configure firebase
 const firebaseConfig = {
@@ -55,6 +57,8 @@ initializeApp(firebaseConfig);
     UserComponent,
     ExhibitionComponent,
     PaymentGatewayComponent,
+    PaymentFailureComponent,
+    PaymentSuccessComponent,
   ],
   //Modules
   imports: [
