@@ -31,15 +31,15 @@ export class PaymentGatewayComponent implements OnInit {
     // this.uid = this.route.params.subscribe((uid) => {
     //   return uid.id;
     // });
-    // this.uid = this.route.snapshot.paramMap.get('id');
+    this.uid = this.route.snapshot.paramMap.get('id');
     //this.userName = this.route.snapshot.paramMap.get('A');
+    // this.route.queryParams.subscribe((params) => {
+    //   this.uid = params.id;
+    //   console.log(params.id);
+    // });
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
-      this.uid = params.id;
-      console.log(params.id);
-    });
     this.initConfig();
     onSnapshot(
       query(
@@ -83,6 +83,46 @@ export class PaymentGatewayComponent implements OnInit {
   }
 
   private initConfig(): void {
+    onSnapshot(
+      query(
+        collection(this.db, 'cartItem', this.uid, 'items')
+        //where('uuid', '==', this.uid)
+        // where('status', '==', 'pending')
+      ),
+      (snapShot) => {
+        const data = snapShot.docs.map((doc) => doc.data());
+        const amounts: any = snapShot.docs
+          .map((doc) => parseInt(doc.data().price))
+          .reduce((doc, doc2) => doc + doc2);
+        const artypes = snapShot.docs.map((doc) => doc.data().artType);
+        const sizes = snapShot.size;
+        this.size = sizes;
+        this.artType = artypes;
+        this.datas = data;
+
+        fetch('https://api.exchangerate-api.com/v4/latest/USD', {
+          method: 'GET',
+          //Request Type
+        })
+          .then((response) => response.json())
+          //If response is in json then in success
+          .then((responseJson) => {
+            //Success
+            const gg = responseJson.rates.ZAR;
+            const totalAmounts = (amounts / gg).toFixed(2);
+            console.log(totalAmounts, ' thee final amount', gg);
+            this.totalAmount = totalAmounts;
+          })
+          //If response is not in json then in error
+          .catch((error) => {
+            //Error
+            alert(JSON.stringify(error));
+            9;
+            console.error(error);
+          });
+      }
+    );
+
     this.payPalConfig = {
       currency: 'USD',
       clientId:
