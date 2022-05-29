@@ -9,30 +9,58 @@
 </head>
 
 <body>
-    <mat-grid-list cols="3" rowHeight="60px" >
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" (click)="fixedNavbarExample2.toggle()"
+                aria-controls="fixedNavbarExample2" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div mdbCollapse #fixedNavbarExample2="mdbCollapse" class="collapse navbar-collapse" id="fixedNavbarExample2">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" aria-current="page" [routerLink]="['/Market']">Market</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"  [routerLink]="['/Exhibition']">Exhibition</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/User']" >Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/Artist']" >Artist</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar -->
+
+    <mat-grid-list cols="3" rowHeight="80px" >
         <mat-grid-tile *ngFor="let data of datas" [colspan]="1" [rowspan]="5" 
             >
-            <mat-card style="max-width: 800px; margin-bottom: 8px;">
+            <mat-card style="width: 400px; ">
                 <mat-card-title-group style="display: flex;justify-content: space-between;">
+                    <mat-card-title-group>
+                        <img mat-card-xl-image src="{{data.artUrl}}" (click)="openModal(data.artUrl)">
+                    </mat-card-title-group>
                 <mat-card-title-group style="display: flex; flex-direction: column;">
-                    <mat-card-title>{{data.artType}}</mat-card-title>
-                    <mat-card-subtitle>{{data.artName}}</mat-card-subtitle>
-                    <div style="margin: -10; margin-right: 10vh;">
-                    <button mat-stroked-button color="primary">Approve</button>
-                    <button mat-stroked-button color="warn">Decline</button>
-                    </div>
-                </mat-card-title-group>
-                <mat-card-title-group>
-                    <img mat-card-xl-image src="{{data.artUrl}}" >
+                    <p class="h2">{{data.artType}}</p>
+                    <p class="h3">name: {{data.artName}}</p>
+                    <p class="h4">size: {{data.artSize}}</p>
+                    <p class="h3">price: R{{data.price}}.00</p>
                 </mat-card-title-group>
                 </mat-card-title-group>
-                <mat-card-title-group></mat-card-title-group>
-                <mat-card-content >
-                    {{data.description}}
-                </mat-card-content>
-            </mat-card>
-        <!-- <img src='{{data.artUrl}}' style="background-color: black;"/> -->
-        </mat-grid-tile>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button class="btn btn-primary me-md-2"   [disabled]="data.isEnabled" autocomplete="off" type="button" (click)="approveArt(data.ImageUid)">Approve</button>
+    <button class="btn btn-danger" type="button" autocomplete="off" (click)="onDisable(data.ImageUid)" [disabled]="!data.isEnabled">Decline</button>
+    </div>
+    <mat-card-content >
+        {{data.description}}
+    </mat-card-content>
+    </mat-card>
+    <!-- <img src='{{data.artUrl}}' style="background-color: black;"/> -->
+    </mat-grid-tile>
     </mat-grid-list>
 
 </body>

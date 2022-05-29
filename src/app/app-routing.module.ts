@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ArtistComponent } from 'src/components/artist/artist.component';
 import { ExhibitionComponent } from 'src/components/exhibition/exhibition.component';
 import { MarketApprovalComponent } from 'src/components/market-approval/market-approval.component';
+import { OnErrorComponent } from 'src/components/on-error/on-error.component';
 import { PaymentFailureComponent } from 'src/components/payment-failure/payment-failure.component';
 import { PaymentGatewayComponent } from 'src/components/payment-gateway/payment-gateway.component';
 import { PaymentSuccessComponent } from 'src/components/payment-success/payment-success.component';
@@ -21,6 +22,7 @@ export const routes: Routes = [
   { path: 'Payment', component: PaymentGatewayComponent },
   { path: 'Failure', component: PaymentFailureComponent },
   { path: 'Success', component: PaymentSuccessComponent },
+  { path: '404', component: OnErrorComponent },
 ];
 
 @NgModule({

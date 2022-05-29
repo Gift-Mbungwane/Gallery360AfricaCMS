@@ -2,11 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   collection,
+  doc,
   getFirestore,
   onSnapshot,
   query,
+  setDoc,
 } from 'firebase/firestore';
+import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { AuthenticationService } from '../services/authentication.service';
+import { ModalComponent } from './modalComponent';
+import { onDisableUserModal } from './modalComponents/onDisableUserModal';
 
 @Component({
   selector: 'app-user',
@@ -18,11 +23,14 @@ export class UserComponent implements OnInit {
   userName: any;
   db: any;
   datas: any;
+  isEnabled: any;
+  modalRef: MdbModalRef<ModalComponent> | null = null;
 
   constructor(
     private router: Router,
     public authenticationService: AuthenticationService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private modalService: MdbModalService
   ) {
     this.db = getFirestore();
     this.uid = this.route.snapshot.paramMap.get('uid');
@@ -41,5 +49,40 @@ export class UserComponent implements OnInit {
         this.datas = data;
       }
     );
+  }
+
+  approveArt(ImageUid: any): void {
+    const batch = doc(this.db, 'users', ImageUid);
+    setDoc(batch, { isEnabled: true }, { merge: true })
+      .then(() => {
+        alert('Image is now availabe on Market');
+      })
+      .catch((error) => {
+        alert('unable to update the');
+      });
+  }
+
+  openModal(artUrl: any) {
+    this.modalRef = this.modalService.open(ModalComponent, {
+      modalClass: 'modal-lg',
+      data: { title: 'Custom title', artUrl: `${artUrl}` },
+      keyboard: true,
+      backdrop: true,
+    });
+    this.modalRef.onClose.subscribe((message: any) => {
+      console.log(message);
+    });
+  }
+
+  onDisable(ImageUid: any) {
+    this.modalRef = this.modalService.open(onDisableUserModal, {
+      modalClass: 'modal-lg',
+      data: { title: 'Custom title', ImageUid: `${ImageUid}` },
+      keyboard: true,
+      backdrop: true,
+    });
+    this.modalRef.onClose.subscribe((message: any) => {
+      console.log(message);
+    });
   }
 }

@@ -16,4 +16,11 @@ export class SignInScreenComponent implements OnInit {
     Validators.required,
     Validators.email,
   ]);
+
+  passwordFormControl = new FormControl('', [
+    Validators.required,
+    Validators.pattern(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/
+    ),
+  ]);
 }

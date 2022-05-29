@@ -3,13 +3,12 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-payment-failure',
   templateUrl: './payment-failure.component.html',
-  styleUrls: ['./payment-failure.component.scss']
+  styleUrls: ['./payment-failure.component.scss'],
 })
 export class PaymentFailureComponent implements OnInit {
-
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
+    window.location.pathname = '';
   }
-
 }

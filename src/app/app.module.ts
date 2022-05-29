@@ -32,6 +32,26 @@ import { ExhibitionComponent } from 'src/components/exhibition/exhibition.compon
 import { PaymentGatewayComponent } from 'src/components/payment-gateway/payment-gateway.component';
 import { PaymentFailureComponent } from 'src/components/payment-failure/payment-failure.component';
 import { PaymentSuccessComponent } from 'src/components/payment-success/payment-success.component';
+import { OnErrorComponent } from '../components/on-error/on-error.component';
+import { MdbAccordionModule } from 'mdb-angular-ui-kit/accordion';
+import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
+import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
+import { MdbCollapseModule } from 'mdb-angular-ui-kit/collapse';
+import { MdbDropdownModule } from 'mdb-angular-ui-kit/dropdown';
+import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
+import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
+import { MdbPopoverModule } from 'mdb-angular-ui-kit/popover';
+import { MdbRadioModule } from 'mdb-angular-ui-kit/radio';
+import { MdbRangeModule } from 'mdb-angular-ui-kit/range';
+import { MdbRippleModule } from 'mdb-angular-ui-kit/ripple';
+import { MdbScrollspyModule } from 'mdb-angular-ui-kit/scrollspy';
+import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
+import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
+import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
+import { onDisableModal } from 'src/components/modalComponents/onDisableModal';
+import { onDisableArtistModal } from 'src/components/artist/modalComponents/onDisableArtistModal';
+import { onDisableUserModal } from 'src/components/user/modalComponents/onDisableUserModal';
+import { onDisableExhibitionModal } from 'src/components/exhibition/modalComponents/onDisableExhibitionModal';
 
 //configure firebase
 const firebaseConfig = {
@@ -59,6 +79,11 @@ initializeApp(firebaseConfig);
     PaymentGatewayComponent,
     PaymentFailureComponent,
     PaymentSuccessComponent,
+    OnErrorComponent,
+    onDisableModal,
+    onDisableArtistModal,
+    onDisableUserModal,
+    onDisableExhibitionModal,
   ],
   //Modules
   imports: [
@@ -75,6 +100,21 @@ initializeApp(firebaseConfig);
     MatTabsModule,
     MatInputModule,
     NgxPayPalModule,
+    MdbAccordionModule,
+    MdbCarouselModule,
+    MdbCheckboxModule,
+    MdbCollapseModule,
+    MdbDropdownModule,
+    MdbFormsModule,
+    MdbModalModule,
+    MdbPopoverModule,
+    MdbRadioModule,
+    MdbRangeModule,
+    MdbRippleModule,
+    MdbScrollspyModule,
+    MdbTabsModule,
+    MdbTooltipModule,
+    MdbValidationModule,
   ],
 
   exports: [],

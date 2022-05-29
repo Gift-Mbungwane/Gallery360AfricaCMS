@@ -1,0 +1,19 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+    </div>
+    <div class="modal-body">
+
+        <mdb-form-control>
+            <textarea mdbInput class="form-control" id="textAreaExample" #message rows="4" [formControl]="messageFormControl"></textarea>
+            <label mdbLabel class="form-label" for="textAreaExample">Message</label>
+        </mdb-form-control>
+        <mat-error *ngIf="!messageFormControl.hasError('min') && messageFormControl.hasError('required')">
+            Reason for Not Displaying the Art on Market
+        </mat-error>
+    </div>
+
+    <div class="modal-footer">
+    <button class="btn btn-danger" type="button" autocomplete="off" (click)="disApproveArt(ImageUid, message.value)">Decline</button>
+    </div>
+</div>

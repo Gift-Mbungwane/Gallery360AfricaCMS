@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
   collection,
+  doc,
   getDoc,
   getFirestore,
   onSnapshot,
   query,
+  setDoc,
   where,
 } from 'firebase/firestore';
 
@@ -31,5 +33,17 @@ export class MarketService {
         // this.data = data;
       }
     );
+  }
+
+  approveArt(exhibitionUid: any): void {
+    const batch = doc(this.db, 'exhibition', exhibitionUid);
+    setDoc(batch, { isEnabled: true }, { merge: true })
+      .then(() => {
+        alert('Exhibition is now availabe to be viewed ');
+      })
+      .catch((error) => {
+        alert('unable to update the exhibition');
+        alert(error);
+      });
   }
 }

@@ -25,25 +25,38 @@
       
       align-self: 'center';
       height: 100vh;">
-            <h3 style="color: aliceblue; font-family: 'Italic'; font-size: 12vh; align-self: 'center';">Sign Up</h3>
-            <div style="display:contents; justify-content: space-between; width: calc(100vw - 480px);">
-                <div class="formGroup">
-                    <input type="text" class="formControl" placeholder="Doe Nkosinathi" #userName required
-                        style="display: flex; border-radius: 8ch; height: 5vh; width: 40vh;">
-                </div>
-                <div class="formGroup">
-                    <input type="email" class="formControl" placeholder="email@admin.com" #userEmail required
-                        style="display: flex; border-radius: 8ch; height: 5vh; width: 40vh;margin-top: 1vh;">
-                </div>
-    
-                <div class="formGroup">
-                    <input type="password" class="formControl" placeholder="Password" #userPassword required
-                        style="display: flex; border-radius: 8ch; height: 5vh; width: 40vh; margin-top: 1vh;">
-                </div>
-            </div>
-            <button style="border-radius: 8ch; height: 7vh; width: 42vh; margin-top: 5vh;" (click)="authenticationService.onSignUp(userName.value, userEmail.value, userPassword.value)">
-                <span style="align-self: center;">submit</span>
-            </button>
+            <h3 style="color: aliceblue; font-family: 'Italic'; font-size: 12vh; align-self: 'center'; margin-top: 20vh;">Sign Up</h3>
+        <div style="display:flex; flex-direction: column; justify-content: space-between; margin-top: 10vh;">
+        <mdb-form-control>
+            <input mdbInput type="text" id="typeLabel" class="form-control" #userName required
+                [formControl]="userNameFormControl" />
+            <label mdbLabel class="form-label" for="typeText">Name:</label>
+        </mdb-form-control>
+        <mat-error *ngIf="userNameFormControl.hasError('required') && !userNameFormControl.hasError('minLength')">
+            Name should not be less than 5 letters 
+        </mat-error>
+        <mat-error *ngIf="userNameFormControl.hasError('maxLength') && userNameFormControl.hasError('required')">
+            Name should not acceed 25 letters
+        </mat-error>
+            <mdb-form-control style="display: flex;margin-top:2vh">
+                <input mdbInput type="email" id="typeEmail" class="form-control" placeholder="example@email.com"
+                    [formControl]="emailFormControl" #userEmail />
+                <label mdbLabel class="form-label" for="typeEmail">Email:</label>
+            </mdb-form-control>
+            <mat-error *ngIf="!emailFormControl.hasError('email') && !emailFormControl.hasError('pattern') && emailFormControl.hasError('required')">
+                Please enter a valid email address
+            </mat-error>
+            <mdb-form-control style="display: flex;margin-top:2vh">
+                <input mdbInput type="password" id="typePassword" class="form-control" #userPassword required />
+                <label mdbLabel class="form-label" for="typePassword">Password:</label>
+            </mdb-form-control>
+            <mat-error *ngIf="!passwordFormControl.hasError('pattern') && passwordFormControl.hasError('required')">
+                Please enter a valid Password
+            </mat-error>
+        
+        </div>
+            <button style="display: flex;margin-top:2vh; align-self: center;" type="button" class="btn btn-light btn-rounded d-grid gap-2 col-12 mx-auto" 
+                (click)="authenticationService.onSignUp(userName.value, userEmail.value, userPassword.value)">sign-up</button>
             <p style="color: '#FFFFFF'; align-self: center; margin-bottom: 5vh;">Have an account?<a [routerLink]="['/SignIn']" style="color: 'rgba(34, 24, 14, 1)';"> Sign In</a></p>
         </div>
     
