@@ -9,8 +9,11 @@
 </head>
 
 <body>
-    <img src="../../assets/images/paypal.png" style="display: flex; align-self:center;width: calc(100vw -100px);"/>
-    <ngx-paypal [config]="payPalConfig" ></ngx-paypal>
+    <div id="payment-div">
+        <img src="../../assets/images/paypal.png" style="display: flex; align-self:center;width: calc(100vw -100px);"/>
+        <ngx-paypal [config]="payPalConfig" ></ngx-paypal>
+    </div>
+
 </body>
 
 </html>

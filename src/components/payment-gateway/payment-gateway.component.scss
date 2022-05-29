@@ -1,0 +1,19 @@
+body {
+    padding: 0;
+    margin: 0;
+    // border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    // justify-content: center;
+    align-items: center;
+}
+#payment-div{
+    padding: 50px;
+    max-width: 720px;
+    // border: 1px solid green;
+}
+
+#payment-div> img {
+    margin: 100px 0 100px 0;
+}
