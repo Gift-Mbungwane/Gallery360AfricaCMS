@@ -9,7 +9,7 @@ import { AuthenticationService } from '../../services/authentication.service';
   templateUrl: './artist-disable-modal.component.html',
 })
 export class onDisableArtistModal implements OnInit {
-  ImageUid: String | null = null;
+  artistUid: String | null = null;
   db: any;
 
   constructor(
@@ -35,9 +35,9 @@ export class onDisableArtistModal implements OnInit {
     this.modalRef.close(closeMessage);
   }
 
-  disApproveArt(ImageUid: any, message: String | any): void {
-    if (message !== '' && ImageUid !== '') {
-      const batch = doc(this.db, 'artists', ImageUid);
+  disApproveArtist(artistUid: any, message: String | any): void {
+    if (message !== '' && artistUid !== '') {
+      const batch = doc(this.db, 'artists', artistUid);
       setDoc(batch, { isEnabled: false, message: message }, { merge: true })
         .then(() => {
           alert('Art has been removed from Market');

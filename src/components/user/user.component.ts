@@ -51,11 +51,11 @@ export class UserComponent implements OnInit {
     );
   }
 
-  approveArt(ImageUid: any): void {
-    const batch = doc(this.db, 'users', ImageUid);
+  approveUser(uid: any): void {
+    const batch = doc(this.db, 'users', uid);
     setDoc(batch, { isEnabled: true }, { merge: true })
       .then(() => {
-        alert('Image is now availabe on Market');
+        alert('User is now enabled to view the gallery-360-africa app');
       })
       .catch((error) => {
         alert('unable to update the');
@@ -74,10 +74,10 @@ export class UserComponent implements OnInit {
     });
   }
 
-  onDisable(ImageUid: any) {
+  onDisable(uid: any) {
     this.modalRef = this.modalService.open(onDisableUserModal, {
       modalClass: 'modal-lg',
-      data: { title: 'Custom title', ImageUid: `${ImageUid}` },
+      data: { title: 'Custom title', uid: `${uid}` },
       keyboard: true,
       backdrop: true,
     });

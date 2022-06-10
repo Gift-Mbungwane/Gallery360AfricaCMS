@@ -8,6 +8,7 @@ import {
   onSnapshot,
   query,
   setDoc,
+  updateDoc,
   where,
 } from 'firebase/firestore';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
@@ -172,47 +173,29 @@ export class PaymentGatewayComponent implements OnInit {
           data,
           actions
         );
-        //Handling funding failure
-        // fetch('/my-server/capture-paypal-transaction', {
-        //   headers: {
-        //     'content-type': 'application/json',
-        //   },
 
-        //   body: JSON.stringify({
-        //     orderID: data.orderID,
-        //   }),
-        // })
-        //   .then(function (response) {
-        //     return response.json();
-        //   })
-        //   .then((orderData) => {
-        //     const transaction =
-        //       orderData.purchase_units[0].payments.captures[0];
-
-        //     alert(
-        //       `Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`
-        //     );
-        //     window.location.pathname = '';
-
-        //     // When ready to go live, remove the alert and show a success message within this page. For example:
-        //     // const element = document.getElementById('paypal-button-container');
-        //     // element.innerHTML = '<h3>Thank you for your payment!</h3>';
-        //     // Or go to another URL:  actions.redirect('thank_you.html');
-        //   });
-
-        // this.router.navigate([
-        //   { payerId: data.payerID, orderId: data.orderID },
-        //   'Success',
-        // ]);
         // This function captures the funds from the transaction.
         // This function shows a transaction success message to your buyer.
-        // actions.order.get().then((details: any) => {
-        //   console.log(
-        //     'onApprove - you can get full order details inside onApprove: ',
-        //     details
-        //   );
-        // });
-        //
+        actions.order.get().then((details: any) => {
+          console.log('');
+          onSnapshot(
+            query(
+              collection(this.db, 'cartItem', this.uid, 'items'),
+              where('uuid', '==', this.uid)
+              // where('status', '==', 'pending')
+            ),
+            (snapShot) => {
+              const data2 = snapShot.docs.map((doc) => doc.data());
+              data2.push();
+            }
+          );
+
+          console.log(
+            'onApprove - you can get full order details inside onApprove: ',
+            details
+          );
+        });
+
         return actions.order.capture().then((orderData: any) => {
           if (orderData.error === 'INSTRUMENT_DECLINED') {
             // Your server response structure and key names are what you choose
@@ -223,17 +206,16 @@ export class PaymentGatewayComponent implements OnInit {
             // Successful capture! For dev/demo purposes:
             console.log(
               'Capture result',
-              orderData,
-              JSON.stringify(orderData, null, 2)
+
+              JSON.stringify(orderData)
             );
             const transaction =
               orderData.purchase_units[0].payments.captures[0];
 
-            alert(
-              `Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`
-            );
+            alert(`Transaction ${transaction.status}: ${transaction.id}`);
+
             // window.location.pathname = '';
-            this.router.navigate(['Success']);
+            //this.router.navigate(['Success']);
 
             // When ready to go live, remove the alert and show a success message within this page. For example:
             // const element = document.getElementById('paypal-button-container');
@@ -241,13 +223,7 @@ export class PaymentGatewayComponent implements OnInit {
             // Or go to another URL:  actions.redirect('thank_you.html');
           }
           // This function shows a transaction success message to your buyer.
-          // deleteDoc(doc(collection(this.db, 'cartItem', this.uid, 'items')))
-          //   .then(() => {
-          //     this.router.navigate(['Success', 'uid', this.uid], {
-          //       relativeTo: this.route,
-          //     });
-          //   })
-          //   .catch((error) => alert(error));
+
           // alert('Transaction completed by ' + details.payer.name.given_name);
         });
       },
@@ -275,8 +251,4 @@ export class PaymentGatewayComponent implements OnInit {
       },
     };
   }
-}
-
-function withConverter(arg0: () => void): any {
-  throw new Error('Function not implemented.');
 }

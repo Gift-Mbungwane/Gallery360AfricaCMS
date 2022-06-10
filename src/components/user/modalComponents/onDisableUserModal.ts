@@ -9,7 +9,7 @@ import { AuthenticationService } from '../../services/authentication.service';
   templateUrl: './user-disable-modal.component.html',
 })
 export class onDisableUserModal implements OnInit {
-  ImageUid: String | null = null;
+  uid: String | null = null;
   db: any;
 
   constructor(
@@ -35,9 +35,9 @@ export class onDisableUserModal implements OnInit {
     this.modalRef.close(closeMessage);
   }
 
-  disApproveArt(ImageUid: any, message: String | any): void {
-    if (message !== '' && ImageUid !== '') {
-      const batch = doc(this.db, 'users', ImageUid);
+  disApproveArt(uid: any, message: String | any): void {
+    if (message !== '' && uid !== '') {
+      const batch = doc(this.db, 'users', uid);
       setDoc(batch, { isEnabled: false, message: message }, { merge: true })
         .then(() => {
           alert('This account is now suspended');

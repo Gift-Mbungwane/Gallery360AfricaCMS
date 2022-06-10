@@ -35,16 +35,16 @@ export class onDisableExhibitionModal implements OnInit {
     this.modalRef.close(closeMessage);
   }
 
-  disApproveArt(exhibitionUid: any, message: String | any): void {
+  disApproveExhibition(exhibitionUid: any, message: String | any): void {
     if (message !== '' && exhibitionUid !== '') {
       const batch = doc(this.db, 'exhibition', exhibitionUid);
       setDoc(batch, { isEnabled: false, message: message }, { merge: true })
         .then(() => {
-          alert('Art has been removed from Exhibition');
+          alert('Exhibition has been removed from Exhibition list');
           this.close();
         })
         .catch((error) => {
-          alert('unable to update the');
+          alert('unable to remove exhibition');
         });
     } else {
       alert('PLease add disapproving reason');

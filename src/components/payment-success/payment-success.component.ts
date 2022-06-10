@@ -32,8 +32,7 @@ export class PaymentSuccessComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    window.location.pathname = '';
-
+    // window.location.pathname = '';
     // deleteDoc(doc(collection(this.db, 'cartItem', this.uid, 'items')))
     //   .then(() => {
     //     alert('item has been paid');

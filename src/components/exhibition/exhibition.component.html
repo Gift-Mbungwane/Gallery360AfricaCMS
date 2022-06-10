@@ -39,9 +39,9 @@
     <mat-grid-list cols="3" rowHeight="100px">
         <mat-grid-tile *ngFor="let data of datas" [colspan]="1" [rowspan]="5">
             <mat-card style="width: 410px; ">
-                <mat-card-title-group style="display: flex;justify-content: space-between;">
+                <mat-card-title-group style="display: flex;flex-direction: column;">
                     <mat-card-title-group>
-                        <img mat-card-xl-image src="{{data.exhibitionImage}}" (click)="openModal(data.exhibitionImage)">
+                        <img class="card-img-top" height="270px" src="{{data.exhibitionImage}}" type="button" (click)="openModal(data.exhibitionImage)">
                     </mat-card-title-group>
                     <mat-card-title-group style="display: flex; flex-direction: column;">
                         <p class="h2">name: {{data.exhibitionTitle}}</p>
@@ -51,7 +51,7 @@
                 </mat-card-title-group>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <button class="btn btn-primary me-md-2" [disabled]="data.isEnabled" autocomplete="off" type="button"
-                        (click)="exhibitionService.approveArt(data.exhibitionUid)">Approve</button>
+                        (click)="approveExhibition(data.exhibitionUid)">Approve</button>
                     <button class="btn btn-danger" type="button" autocomplete="off" (click)="onDisable(data.exhibitionUid)"
                         [disabled]="!data.isEnabled">Decline</button>
                 </div>

@@ -2,6 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ArtistComponent } from 'src/components/artist/artist.component';
 import { ExhibitionComponent } from 'src/components/exhibition/exhibition.component';
+import { ArtistGuard } from 'src/components/guards/artist.guard';
+import { ExhibitionGuard } from 'src/components/guards/exhibition.guard';
+import { MarketGuard } from 'src/components/guards/market.guard';
+import { UserGuard } from 'src/components/guards/user.guard';
 import { MarketApprovalComponent } from 'src/components/market-approval/market-approval.component';
 import { OnErrorComponent } from 'src/components/on-error/on-error.component';
 import { PaymentFailureComponent } from 'src/components/payment-failure/payment-failure.component';
@@ -15,10 +19,18 @@ export const routes: Routes = [
   { path: '', redirectTo: 'SignIn', pathMatch: 'full' },
   { path: 'SignIn', component: SignInScreenComponent },
   { path: 'SignUp', component: SignUpScreenComponent },
-  { path: 'Market', component: MarketApprovalComponent },
-  { path: 'Exhibition', component: ExhibitionComponent },
-  { path: 'User', component: UserComponent },
-  { path: 'Artist', component: ArtistComponent },
+  {
+    path: 'Market',
+    component: MarketApprovalComponent,
+    canActivate: [MarketGuard],
+  },
+  {
+    path: 'Exhibition',
+    component: ExhibitionComponent,
+    canActivate: [ExhibitionGuard],
+  },
+  { path: 'User', component: UserComponent, canActivate: [UserGuard] },
+  { path: 'Artist', component: ArtistComponent, canActivate: [ArtistGuard] },
   { path: 'Payment', component: PaymentGatewayComponent },
   { path: 'Failure', component: PaymentFailureComponent },
   { path: 'Success', component: PaymentSuccessComponent },

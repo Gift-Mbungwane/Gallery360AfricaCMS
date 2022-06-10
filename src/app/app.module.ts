@@ -33,6 +33,7 @@ import { PaymentGatewayComponent } from 'src/components/payment-gateway/payment-
 import { PaymentFailureComponent } from 'src/components/payment-failure/payment-failure.component';
 import { PaymentSuccessComponent } from 'src/components/payment-success/payment-success.component';
 import { OnErrorComponent } from '../components/on-error/on-error.component';
+//
 import { MdbAccordionModule } from 'mdb-angular-ui-kit/accordion';
 import { MdbCarouselModule } from 'mdb-angular-ui-kit/carousel';
 import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
@@ -48,10 +49,18 @@ import { MdbScrollspyModule } from 'mdb-angular-ui-kit/scrollspy';
 import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
 import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
+//modals
 import { onDisableModal } from 'src/components/modalComponents/onDisableModal';
 import { onDisableArtistModal } from 'src/components/artist/modalComponents/onDisableArtistModal';
 import { onDisableUserModal } from 'src/components/user/modalComponents/onDisableUserModal';
 import { onDisableExhibitionModal } from 'src/components/exhibition/modalComponents/onDisableExhibitionModal';
+//guards
+import { ArtistGuard } from 'src/components/guards/artist.guard';
+import { UserGuard } from 'src/components/guards/user.guard';
+import { MarketGuard } from 'src/components/guards/market.guard';
+import { ExhibitionGuard } from 'src/components/guards/exhibition.guard';
+
+// videogular
 
 //configure firebase
 const firebaseConfig = {
@@ -119,7 +128,14 @@ initializeApp(firebaseConfig);
 
   exports: [],
   //services
-  providers: [AuthenticationService, AppComponent],
+  providers: [
+    AuthenticationService,
+    AppComponent,
+    ArtistGuard,
+    UserGuard,
+    MarketGuard,
+    ExhibitionGuard,
+  ],
   //bootStrap/Styling as whole
   bootstrap: [AppComponent],
 })

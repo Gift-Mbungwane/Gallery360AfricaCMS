@@ -36,12 +36,12 @@
         </nav>
         <!-- Navbar -->
    
-        <mat-grid-list cols="3" rowHeight="100px">
-            <mat-grid-tile *ngFor="let data of datas" [colspan]="1" [rowspan]="5">
+        <mat-grid-list cols="3" rowHeight="150px" style="background-color: black;" class="card" >
+            <mat-grid-tile *ngFor="let data of datas" [colspan]="1" [rowspan]="6">
                 <mat-card style="width: 410px; ">
-                    <mat-card-title-group style="display: flex;justify-content: space-between;">
+                    <mat-card-title-group style="display: flex;flex-direction: column;">
                         <mat-card-title-group>
-                            <img mat-card-xl-image src="{{data.photoUrl}}" (click)="openModal(data.photoUrl)">
+                            <img class="card-img-top" src="{{data.photoUrl}}" type="button" (click)="openModal(data.photoUrl)" height="270px">
                         </mat-card-title-group>
                         <mat-card-title-group style="display: flex; flex-direction: column;">
                             <p class="h3">name: {{data.artistName}}</p>
@@ -50,13 +50,19 @@
                     </mat-card-title-group>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <button class="btn btn-primary me-md-2" [disabled]="data.isEnabled" autocomplete="off" type="button"
-                            (click)="approveArt(data.ImageUid)">Approve</button>
-                        <button class="btn btn-danger" type="button" autocomplete="off" (click)="onDisable(data.ImageUid)"
+                            (click)="approveArtist(data.artistUid)">Approve</button>
+                        <button class="btn btn-danger" type="button" autocomplete="off" (click)="onDisable(data.artistUid)"
                             [disabled]="!data.isEnabled">Decline</button>
                     </div>
                         <mat-card-content>
                             {{data.description}}
                         </mat-card-content>
+                        <!-- <div class="ratio ratio-1x1"> -->
+                            <!-- <iframe src="data.videoUrl" id="embeddedPage" allowfullscreen allowtransparency allow="autolay"
+                            scrolling="no" frameborder="0"></iframe>
+                             -->
+                            <video id="align" controls src="{{data.videoUrl}}" type="video/mp4" scrolling="no" frameborder="0" allowfullscreen allowtransparency allow="autolay" ></video>
+                        <!-- </div> -->
                 </mat-card>
             </mat-grid-tile>
         </mat-grid-list>

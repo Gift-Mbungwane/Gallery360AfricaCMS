@@ -32,31 +32,43 @@
                 [formControl]="userNameFormControl" />
             <label mdbLabel class="form-label" for="typeText">Name:</label>
         </mdb-form-control>
-        <mat-error *ngIf="userNameFormControl.hasError('required') && !userNameFormControl.hasError('minLength')">
-            Name should not be less than 5 letters 
+        <mat-error *ngIf="userNameFormControl.invalid && (userNameFormControl.dirty || userNameFormControl.touched)" >
+        <mat-error *ngIf="!userNameFormControl.hasError('minLength')">
+            Name must be at least 4 characters long.
+        </mat-error>
         </mat-error>
         <mat-error *ngIf="userNameFormControl.hasError('maxLength') && userNameFormControl.hasError('required')">
             Name should not acceed 25 letters
         </mat-error>
             <mdb-form-control style="display: flex;margin-top:2vh">
-                <input mdbInput type="email" id="typeEmail" class="form-control" placeholder="example@email.com"
+                <input mdbInput type="email" id="typeEmail" class="form-control"
                     [formControl]="emailFormControl" #userEmail />
                 <label mdbLabel class="form-label" for="typeEmail">Email:</label>
             </mdb-form-control>
-            <mat-error *ngIf="!emailFormControl.hasError('email') && !emailFormControl.hasError('pattern') && emailFormControl.hasError('required')">
+            <mat-error *ngIf="emailFormControl.invalid && (emailFormControl.dirty || emailFormControl.touched)">
+            <mat-error *ngIf="!emailFormControl.hasError('required')">
                 Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="!emailFormControl.hasError('pattern')">
+                email is required.
+            </mat-error>
             </mat-error>
             <mdb-form-control style="display: flex;margin-top:2vh">
                 <input mdbInput type="password" id="typePassword" class="form-control" #userPassword required />
                 <label mdbLabel class="form-label" for="typePassword">Password:</label>
             </mdb-form-control>
-            <mat-error *ngIf="!passwordFormControl.hasError('pattern') && passwordFormControl.hasError('required')">
-                Please enter a valid Password
+            <mat-error *ngIf="passwordFormControl.invalid && (passwordFormControl.dirty || passwordFormControl.touched)">
+            <mat-error *ngIf="!passwordFormControl.hasError('required')">
+                 password is required
             </mat-error>
-        
-        </div>
-            <button style="display: flex;margin-top:2vh; align-self: center;" type="button" class="btn btn-light btn-rounded d-grid gap-2 col-12 mx-auto" 
-                (click)="authenticationService.onSignUp(userName.value, userEmail.value, userPassword.value)">sign-up</button>
+            <mat-error *ngIf="!passwordFormControl.hasError('pattern')">
+            Please enter a valid Password
+            </mat-error>
+            </mat-error>
+            </div>
+
+            <button style="display: flex;margin-top:5vh; align-self: center;" type="button" class="btn btn-light btn-rounded d-grid gap-2 col-12 mx-auto" 
+                (click)="authenticationService.onSignUp(userName.value, userEmail.value, userPassword.value)">Sign Up</button>
             <p style="color: '#FFFFFF'; align-self: center; margin-bottom: 5vh;">Have an account?<a [routerLink]="['/SignIn']" style="color: 'rgba(34, 24, 14, 1)';"> Sign In</a></p>
         </div>
     

@@ -64,7 +64,7 @@ export class ExhibitionComponent implements OnInit {
     });
   }
 
-  approveArt(exhibitionUid: any): void {
+  approveExhibition(exhibitionUid: any): void {
     const batch = doc(this.db, 'exhibition', exhibitionUid);
     setDoc(batch, { isEnabled: true }, { merge: true })
       .then(() => {

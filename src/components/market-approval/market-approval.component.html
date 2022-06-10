@@ -37,12 +37,12 @@
     <!-- Navbar -->
 
     <mat-grid-list cols="3" rowHeight="80px" >
-        <mat-grid-tile *ngFor="let data of datas" [colspan]="1" [rowspan]="5" 
+        <mat-grid-tile *ngFor="let data of datas" [colspan]="1" [rowspan]="7" 
             >
             <mat-card style="width: 400px; ">
-                <mat-card-title-group style="display: flex;justify-content: space-between;">
+                <mat-card-title-group style="display: flex;flex-direction: column;">
                     <mat-card-title-group>
-                        <img mat-card-xl-image src="{{data.artUrl}}" (click)="openModal(data.artUrl)">
+                        <img class="card-img-top" height="270px" src="{{data.artUrl}}" type="button" (click)="openModal(data.artUrl)">
                     </mat-card-title-group>
                 <mat-card-title-group style="display: flex; flex-direction: column;">
                     <p class="h2">{{data.artType}}</p>

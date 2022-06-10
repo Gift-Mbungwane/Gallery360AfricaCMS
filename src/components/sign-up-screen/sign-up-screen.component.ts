@@ -13,8 +13,8 @@ export class SignUpScreenComponent implements OnInit {
 
   userNameFormControl = new FormControl('', [
     Validators.required,
-    Validators.maxLength(6),
-    Validators.minLength(5),
+    Validators.minLength(4),
+    //forbiddenNameValidator(/bob/i), // <-- Here's how you pass in the custom validator.
   ]);
 
   emailFormControl = new FormControl('', [

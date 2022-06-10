@@ -9,6 +9,6 @@ export class PaymentFailureComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    window.location.pathname = '';
+    // window.location.pathname = '';
   }
 }

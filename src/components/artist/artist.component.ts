@@ -60,8 +60,8 @@ export class ArtistComponent implements OnInit {
     });
   }
 
-  approveArt(ImageUid: any): void {
-    const batch = doc(this.db, 'artists', ImageUid);
+  approveArtist(artistUid: any) {
+    const batch = doc(this.db, 'artists', artistUid);
     setDoc(batch, { isEnabled: true }, { merge: true })
       .then(() => {
         alert('Artist is Diplayed under Artist');
@@ -71,21 +71,10 @@ export class ArtistComponent implements OnInit {
       });
   }
 
-  disApproveArt(ImageUid: any, message: String | any): void {
-    const batch = doc(this.db, 'artists', ImageUid);
-    setDoc(batch, { isEnabled: false }, { merge: true })
-      .then(() => {
-        alert('Art has been removed from Market');
-      })
-      .catch((error) => {
-        alert('unable to update the');
-      });
-  }
-
-  onDisable(ImageUid: any) {
+  onDisable(artistUid: any) {
     this.modalRef = this.modalService.open(onDisableArtistModal, {
       modalClass: 'modal-lg',
-      data: { title: 'Custom title', ImageUid: `${ImageUid}` },
+      data: { title: 'Custom title', artistUid: `${artistUid}` },
       keyboard: true,
       backdrop: true,
     });

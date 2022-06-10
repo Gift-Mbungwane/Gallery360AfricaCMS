@@ -25,8 +25,20 @@ export class AuthenticationService {
     auth: getAuth(),
     db: getFirestore(),
   };
+  userData: any;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    this.state.auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.userData = user;
+        localStorage.setItem('user', JSON.stringify(this.userData));
+        JSON.parse(localStorage.getItem('user')!);
+      } else {
+        localStorage.setItem('user', 'null');
+        JSON.parse(localStorage.getItem('user')!);
+      }
+    });
+  }
 
   onSignUp(userName: string, email: string, password: string) {
     createUserWithEmailAndPassword(this.state.auth, email, password)
@@ -73,5 +85,25 @@ export class AuthenticationService {
         );
       }
     );
+  }
+
+  get isMarket(): boolean {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    return user !== 'null' ? true : false;
+  }
+
+  get isArtist(): boolean {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    return user !== 'null' ? true : false;
+  }
+
+  get isExhibition(): boolean {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    return user !== 'null' ? true : false;
+  }
+
+  get isUser(): boolean {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    return user !== 'null' ? true : false;
   }
 }
