@@ -59,6 +59,9 @@ import { ArtistGuard } from 'src/components/guards/artist.guard';
 import { UserGuard } from 'src/components/guards/user.guard';
 import { MarketGuard } from 'src/components/guards/market.guard';
 import { ExhibitionGuard } from 'src/components/guards/exhibition.guard';
+import { PaymentDetailsComponent } from 'src/components/payment-details/payment-details.component';
+import { PaymentDetailsGuard } from 'src/components/guards/payment-details.guard';
+import { ModalComponent } from 'src/components/payment-details/modalComponent';
 
 // videogular
 
@@ -88,11 +91,13 @@ initializeApp(firebaseConfig);
     PaymentGatewayComponent,
     PaymentFailureComponent,
     PaymentSuccessComponent,
+    PaymentDetailsComponent,
     OnErrorComponent,
     onDisableModal,
     onDisableArtistModal,
     onDisableUserModal,
     onDisableExhibitionModal,
+    ModalComponent,
   ],
   //Modules
   imports: [
@@ -135,6 +140,7 @@ initializeApp(firebaseConfig);
     UserGuard,
     MarketGuard,
     ExhibitionGuard,
+    PaymentDetailsGuard,
   ],
   //bootStrap/Styling as whole
   bootstrap: [AppComponent],

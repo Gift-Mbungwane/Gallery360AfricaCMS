@@ -33,8 +33,7 @@ export class ArtistComponent implements OnInit {
     private modalService: MdbModalService
   ) {
     this.db = getFirestore();
-    this.uid = this.route.snapshot.paramMap.get('uid');
-    this.userName = this.route.snapshot.paramMap.get('userName');
+    this.uid = this.route.snapshot.paramMap.get('id');
   }
 
   ngOnInit(): void {

@@ -37,7 +37,7 @@ export class ExhibitionComponent implements OnInit {
     private modalService: MdbModalService
   ) {
     this.db = getFirestore();
-    this.uid = this.route.snapshot.paramMap.get('uid');
+    this.uid = this.route.snapshot.paramMap.get('id');
   }
   ngOnInit(): void {
     onSnapshot(

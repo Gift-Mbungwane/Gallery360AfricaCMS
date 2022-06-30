@@ -5,9 +5,11 @@ import { ExhibitionComponent } from 'src/components/exhibition/exhibition.compon
 import { ArtistGuard } from 'src/components/guards/artist.guard';
 import { ExhibitionGuard } from 'src/components/guards/exhibition.guard';
 import { MarketGuard } from 'src/components/guards/market.guard';
+import { PaymentDetailsGuard } from 'src/components/guards/payment-details.guard';
 import { UserGuard } from 'src/components/guards/user.guard';
 import { MarketApprovalComponent } from 'src/components/market-approval/market-approval.component';
 import { OnErrorComponent } from 'src/components/on-error/on-error.component';
+import { PaymentDetailsComponent } from 'src/components/payment-details/payment-details.component';
 import { PaymentFailureComponent } from 'src/components/payment-failure/payment-failure.component';
 import { PaymentGatewayComponent } from 'src/components/payment-gateway/payment-gateway.component';
 import { PaymentSuccessComponent } from 'src/components/payment-success/payment-success.component';
@@ -35,6 +37,11 @@ export const routes: Routes = [
   { path: 'Failure', component: PaymentFailureComponent },
   { path: 'Success', component: PaymentSuccessComponent },
   { path: '404', component: OnErrorComponent },
+  {
+    path: 'payment-details',
+    component: PaymentDetailsComponent,
+    canActivate: [PaymentDetailsGuard],
+  },
 ];
 
 @NgModule({

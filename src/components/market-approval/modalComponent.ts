@@ -5,7 +5,7 @@ import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   template: `
-    <div class="modal-content">
+    <div class="modal-content" style="width:calc(100vw - 480px);">
       <div class="modal-header">
         <button
           type="button"

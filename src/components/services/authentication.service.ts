@@ -77,10 +77,7 @@ export class AuthenticationService {
           (snapShot) => {
             const userName = snapShot.docs.map((doc) => doc.data().userName);
             // this.router.navigate(['about'], { relativeTo: this.route });
-            return this.router.navigate([
-              'Market',
-              { uid: uid, userName: userName },
-            ]);
+            return this.router.navigate(['Market', { id: uid }]);
           }
         );
       }
@@ -103,6 +100,11 @@ export class AuthenticationService {
   }
 
   get isUser(): boolean {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    return user !== 'null' ? true : false;
+  }
+
+  get isPayment(): boolean {
     const user = JSON.parse(localStorage.getItem('user')!);
     return user !== 'null' ? true : false;
   }

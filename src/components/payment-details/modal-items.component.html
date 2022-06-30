@@ -1,0 +1,25 @@
+<div style="width:100vh;">
+    <!-- <div class="modal-header">
+        <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
+    </div> -->
+    <div class="modal-content" style="display:flexbox;flex-direction:row; justify-content: space-between; align-content: space-between; background-color: #9E9E9E;margin-right: 10px;">
+    <div *ngFor="let data of data" >
+        <div class="card" style="width: 18rem;">
+            <img src="{{ data.artUrl }}" class="card-img-top" alt="..." width="150px" height="150px"/>
+            <div class="card-body" style="display: flex;flex-direction: column; justify-content: space-between">
+                <p class="card-text text-muted mb-0">
+                   <strong>Art-type:</strong> {{data.artType}}
+                </p>
+                <p class="card-text text-muted mb-0">
+                    <strong>Price:</strong> ZAR {{data.price}}.00
+                </p>
+                <!-- <div class="d-grid gap-2 d-md-block" style="margin-top: 5px;"> -->
+                    <div class="d-grid gap-2" style="margin-top: 5px;">
+                    <!-- <button type="button" class="btn btn-light me-md-2">Light</button> -->
+                    <button type="button" class="btn btn-dark" (click)="updateMarket(data.imageUid)">Legacy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>

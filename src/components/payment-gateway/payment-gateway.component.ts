@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationCancel, Router } from '@angular/router';
 import {
+  addDoc,
   collection,
   deleteDoc,
   doc,
@@ -10,7 +11,9 @@ import {
   setDoc,
   updateDoc,
   where,
+  writeBatch,
 } from 'firebase/firestore';
+import * as moment from 'moment';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 
 @Component({
@@ -29,6 +32,8 @@ export class PaymentGatewayComponent implements OnInit {
   db: any;
   artType: any;
   size: any;
+  imageUid: any;
+  data: any;
 
   constructor(private route: ActivatedRoute, private router: Router) {
     this.db = getFirestore();
@@ -41,92 +46,58 @@ export class PaymentGatewayComponent implements OnInit {
     //   this.uid = params.id;
     //   console.log(params.id);
     // });
+    onSnapshot(
+      query(
+        collection(this.db, 'cartItem', this.uid, 'items')
+        //where('uuid', '==', this.uid)
+        // where('status', '==', 'pending')
+      ),
+      (snapShot) => {
+        const data = snapShot.docs.map((doc) => doc.data());
+        const amounts: any = snapShot.docs
+          .map((doc) => parseInt(doc.data().price))
+          .reduce((doc, doc2) => doc + doc2);
+        const artypes = snapShot.docs.map((doc) => doc.data().artType);
+        const sizes = snapShot.size;
+        this.imageUid = snapShot.docs.map(
+          (document) => document.data().imageUid
+        );
+        this.size = sizes;
+        this.artType = artypes;
+        this.datas = data;
+
+        fetch(
+          'https://v6.exchangerate-api.com/v6/39ae72c37b140691d14cd46d/latest/USD',
+          {
+            method: 'GET',
+            //Request Type
+          }
+        )
+          .then((response) => response.json())
+          //If response is in json then in success
+          .then((responseJson) => {
+            //Success
+            const gg = responseJson.conversion_rates.ZAR;
+            const totalAmounts = (amounts / gg).toFixed(2);
+            console.log(totalAmounts, ' thee final amount', gg);
+            this.totalAmount = totalAmounts;
+          })
+          //If response is not in json then in error
+          .catch((error) => {
+            //Error
+            alert(JSON.stringify(error));
+            9;
+            console.error(error);
+          });
+      }
+    );
   }
 
   ngOnInit(): void {
     this.initConfig();
-    onSnapshot(
-      query(
-        collection(this.db, 'cartItem', this.uid, 'items')
-        //where('uuid', '==', this.uid)
-        // where('status', '==', 'pending')
-      ),
-      (snapShot) => {
-        const data = snapShot.docs.map((doc) => doc.data());
-        const amounts: any = snapShot.docs
-          .map((doc) => parseInt(doc.data().price))
-          .reduce((doc, doc2) => doc + doc2);
-        const artypes = snapShot.docs.map((doc) => doc.data().artType);
-        const sizes = snapShot.size;
-        this.size = sizes;
-        this.artType = artypes;
-        this.datas = data;
-
-        fetch('https://api.exchangerate-api.com/v4/latest/USD', {
-          method: 'GET',
-          //Request Type
-        })
-          .then((response) => response.json())
-          //If response is in json then in success
-          .then((responseJson) => {
-            //Success
-            const gg = responseJson.rates.ZAR;
-            const totalAmounts = (amounts / gg).toFixed(2);
-            console.log(totalAmounts, ' thee final amount', gg);
-            this.totalAmount = totalAmounts;
-          })
-          //If response is not in json then in error
-          .catch((error) => {
-            //Error
-            alert(JSON.stringify(error));
-            9;
-            console.error(error);
-          });
-      }
-    );
   }
 
   private initConfig(): void {
-    onSnapshot(
-      query(
-        collection(this.db, 'cartItem', this.uid, 'items')
-        //where('uuid', '==', this.uid)
-        // where('status', '==', 'pending')
-      ),
-      (snapShot) => {
-        const data = snapShot.docs.map((doc) => doc.data());
-        const amounts: any = snapShot.docs
-          .map((doc) => parseInt(doc.data().price))
-          .reduce((doc, doc2) => doc + doc2);
-        const artypes = snapShot.docs.map((doc) => doc.data().artType);
-        const sizes = snapShot.size;
-        this.size = sizes;
-        this.artType = artypes;
-        this.datas = data;
-
-        fetch('https://api.exchangerate-api.com/v4/latest/USD', {
-          method: 'GET',
-          //Request Type
-        })
-          .then((response) => response.json())
-          //If response is in json then in success
-          .then((responseJson) => {
-            //Success
-            const gg = responseJson.rates.ZAR;
-            const totalAmounts = (amounts / gg).toFixed(2);
-            console.log(totalAmounts, ' thee final amount', gg);
-            this.totalAmount = totalAmounts;
-          })
-          //If response is not in json then in error
-          .catch((error) => {
-            //Error
-            alert(JSON.stringify(error));
-            9;
-            console.error(error);
-          });
-      }
-    );
-
     this.payPalConfig = {
       currency: 'USD',
       clientId:
@@ -138,22 +109,34 @@ export class PaymentGatewayComponent implements OnInit {
             {
               amount: {
                 currency_code: 'USD',
-                value: `${this.totalAmount}`,
+                value: `${this.totalAmount}`, //the total amount of items including the shipping and insurance, etc.
                 breakdown: {
+                  // handling: {
+                  //   currency_code: 'USD',
+                  //   value: '1.54',
+                  // },
+                  // insurance: {
+                  //   currency_code: 'USD',
+                  //   value: '1.59',
+                  // },
                   item_total: {
                     currency_code: 'USD',
-                    value: `${this.totalAmount}`,
+                    value: `${this.totalAmount}`, //the total amount of th items
                   },
+                  // shipping: {
+                  //   currency_code: 'USD',
+                  //   value: '1.22',
+                  // },
                 },
               },
               items: [
                 {
-                  name: 'Purchase @Gallary-360-Africa',
-                  quantity: `${this.size}`,
-                  category: 'PHYSICAL_GOODS',
+                  name: 'Enterprise Subscription',
+                  quantity: '1',
+                  category: 'DIGITAL_GOODS',
                   unit_amount: {
                     currency_code: 'USD',
-                    value: `${this.totalAmount}`,
+                    value: `${this.totalAmount}`, //this should be the total amount
                   },
                 },
               ],
@@ -168,63 +151,40 @@ export class PaymentGatewayComponent implements OnInit {
         layout: 'vertical',
       },
       onApprove: (data, actions) => {
-        console.log(
-          'onApprove - transaction was approved, but not authorized',
-          data,
-          actions
-        );
-
-        // This function captures the funds from the transaction.
-        // This function shows a transaction success message to your buyer.
-        actions.order.get().then((details: any) => {
-          console.log('');
-          onSnapshot(
-            query(
-              collection(this.db, 'cartItem', this.uid, 'items'),
-              where('uuid', '==', this.uid)
-              // where('status', '==', 'pending')
-            ),
-            (snapShot) => {
-              const data2 = snapShot.docs.map((doc) => doc.data());
-              data2.push();
-            }
-          );
-
+        // console.log(
+        //   'onApprove - transaction was approved, but not authorized',
+        //   data,
+        //   actions
+        // );
+        return actions.order.get().then(async (details: any) => {
           console.log(
             'onApprove - you can get full order details inside onApprove: ',
             details
           );
-        });
-
-        return actions.order.capture().then((orderData: any) => {
-          if (orderData.error === 'INSTRUMENT_DECLINED') {
-            // Your server response structure and key names are what you choose
-            actions.restart();
-            //window.location.pathname = '';
-            this.router.navigate(['Failure']);
-          } else {
-            // Successful capture! For dev/demo purposes:
-            console.log(
-              'Capture result',
-
-              JSON.stringify(orderData)
-            );
-            const transaction =
-              orderData.purchase_units[0].payments.captures[0];
-
-            alert(`Transaction ${transaction.status}: ${transaction.id}`);
-
-            // window.location.pathname = '';
-            //this.router.navigate(['Success']);
-
-            // When ready to go live, remove the alert and show a success message within this page. For example:
-            // const element = document.getElementById('paypal-button-container');
-            // element.innerHTML = '<h3>Thank you for your payment!</h3>';
-            // Or go to another URL:  actions.redirect('thank_you.html');
-          }
-          // This function shows a transaction success message to your buyer.
-
-          // alert('Transaction completed by ' + details.payer.name.given_name);
+          //   //
+          const docRef = await addDoc(collection(this.db, 'payment'), {
+            name: details.purchase_units[0].shipping.name.full_name,
+            totalAmount: details.purchase_units[0].amount.value,
+            address: `${
+              details.purchase_units[0].shipping.address.address_line_1 +
+              '\n' +
+              details.purchase_units[0].shipping.address.admin_area_1 +
+              '\n' +
+              details.purchase_units[0].shipping.address.admin_area_2 +
+              '\n' +
+              details.purchase_units[0].shipping.address.country_code +
+              '\n' +
+              details.purchase_units[0].shipping.address.postal_code
+            }`,
+            transactionId: details.id,
+            date: `${moment(new Date()).format('DD-MM-YYYY').toString()}`,
+            uuid: this.uid,
+            emailAddress: details.payer.email_address,
+            payerId: details.payer.payer_id,
+            items: this.datas,
+            status: details.status,
+          });
+          updateDoc(docRef, { documentID: docRef.id });
         });
       },
       onClientAuthorization: (data) => {
@@ -232,19 +192,13 @@ export class PaymentGatewayComponent implements OnInit {
           'onClientAuthorization - you should probably inform your server about completed transaction at this point',
           data
         );
-        // this.showSuccess = true;
+        this.showSuccess = true;
       },
       onCancel: (data, actions) => {
         console.log('OnCancel', data, actions);
-        // Show a cancel page, or return to cart
-        // window.location.pathname = '';
-        this.router.navigate(['404']);
       },
       onError: (err) => {
-        this.router.navigate(['Failure']);
-
-        // For example, redirect to a specific error page
-        // window.location.pathname = '';
+        console.log('OnError', err);
       },
       onClick: (data, actions) => {
         console.log('onClick', data, actions);
