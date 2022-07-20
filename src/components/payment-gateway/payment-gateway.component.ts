@@ -34,6 +34,8 @@ export class PaymentGatewayComponent implements OnInit {
   size: any;
   imageUid: any;
   data: any;
+  key_id: any;
+  paramsObject: any;
 
   constructor(private route: ActivatedRoute, private router: Router) {
     this.db = getFirestore();
@@ -41,16 +43,23 @@ export class PaymentGatewayComponent implements OnInit {
     //   return uid.id;
     // });
     this.uid = this.route.snapshot.paramMap.get('id');
-    //this.userName = this.route.snapshot.paramMap.get('A');
-    // this.route.queryParams.subscribe((params) => {
-    //   this.uid = params.id;
-    //   console.log(params.id);
+
+    // this.route.queryParamMap.subscribe((params) => {
+    //   this.paramsObject = { ...params.keys, ...params };
+    //   console.log(
+    //     this.paramsObject.params.id,
+    //     'this the id from object params'
+    //   );
+    //   console.log(
+    //     this.paramsObject.params.key,
+    //     'this the key from object params'
+    //   );
     // });
     onSnapshot(
       query(
         collection(this.db, 'cartItem', this.uid, 'items')
+        //collection(this.db, 'cartItem', this.paramsObject.params.id, 'items')
         //where('uuid', '==', this.uid)
-        // where('status', '==', 'pending')
       ),
       (snapShot) => {
         const data = snapShot.docs.map((doc) => doc.data());
@@ -65,6 +74,7 @@ export class PaymentGatewayComponent implements OnInit {
         this.size = sizes;
         this.artType = artypes;
         this.datas = data;
+        console.log(artypes[0]);
 
         fetch(
           'https://v6.exchangerate-api.com/v6/39ae72c37b140691d14cd46d/latest/USD',
@@ -102,6 +112,7 @@ export class PaymentGatewayComponent implements OnInit {
       currency: 'USD',
       clientId:
         'AUBnW3yDrThpaiculRFIsW4RSc9voYKWeYzk4feLT1Hj9pg6dAjyaWU3ndxqJHHb1cyL2Hh23I_rR-EK',
+      //clientId: this.paramsObject.params.key,
       createOrderOnClient: (data) =>
         <ICreateOrderRequest>{
           intent: 'CAPTURE',
@@ -109,6 +120,7 @@ export class PaymentGatewayComponent implements OnInit {
             {
               amount: {
                 currency_code: 'USD',
+                //value: '0.01',
                 value: `${this.totalAmount}`, //the total amount of items including the shipping and insurance, etc.
                 breakdown: {
                   // handling: {
@@ -121,6 +133,7 @@ export class PaymentGatewayComponent implements OnInit {
                   // },
                   item_total: {
                     currency_code: 'USD',
+                    // value: '0.01',
                     value: `${this.totalAmount}`, //the total amount of th items
                   },
                   // shipping: {
@@ -132,10 +145,12 @@ export class PaymentGatewayComponent implements OnInit {
               items: [
                 {
                   name: 'Enterprise Subscription',
-                  quantity: '1',
+                  quantity: `${this.size}`,
+                  //quantity: '1',
                   category: 'DIGITAL_GOODS',
                   unit_amount: {
                     currency_code: 'USD',
+                    // value: '0.01',
                     value: `${this.totalAmount}`, //this should be the total amount
                   },
                 },
@@ -149,6 +164,8 @@ export class PaymentGatewayComponent implements OnInit {
       style: {
         label: 'paypal',
         layout: 'vertical',
+        color: 'blue',
+        shape: 'rect',
       },
       onApprove: (data, actions) => {
         // console.log(
@@ -179,6 +196,7 @@ export class PaymentGatewayComponent implements OnInit {
             transactionId: details.id,
             date: `${moment(new Date()).format('DD-MM-YYYY').toString()}`,
             uuid: this.uid,
+            // uuid: this.paramsObject.params.id,
             emailAddress: details.payer.email_address,
             payerId: details.payer.payer_id,
             items: this.datas,

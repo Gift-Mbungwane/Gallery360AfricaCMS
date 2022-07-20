@@ -68,28 +68,4 @@ export class PaymentDetailsComponent implements OnInit {
       console.log(message);
     });
   }
-
-  // approveExhibition(exhibitionUid: any): void {
-  //   const batch = doc(this.db, 'exhibition', exhibitionUid);
-  //   setDoc(batch, { isEnabled: true }, { merge: true })
-  //     .then(() => {
-  //       alert('Exhibition is now availabe to be viewed ');
-  //     })
-  //     .catch((error) => {
-  //       alert('unable to update the exhibition');
-  //       alert(error);
-  //     });
-  // }
-
-  // onDisable(exhibitionUid: any) {
-  //   this.modalRef = this.modalService.open(onDisableExhibitionModal, {
-  //     modalClass: 'modal-lg',
-  //     data: { exhibitionUid: `${exhibitionUid}` },
-  //     keyboard: true,
-  //     backdrop: true,
-  //   });
-  //   this.modalRef.onClose.subscribe((message: any) => {
-  //     console.log(message);
-  //   });
-  // }
 }

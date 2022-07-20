@@ -1,9 +1,9 @@
-<div style="width:100vh;">
+<div class="modal-content" >
     <!-- <div class="modal-header">
         <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
     </div> -->
-    <div class="modal-content" style="display:flexbox;flex-direction:row; justify-content: space-between; align-content: space-between; background-color: #9E9E9E;margin-right: 10px;">
-    <div *ngFor="let data of data" >
+    <div style="display:flexbox;flex-direction:row; ">
+    <div class="modal-body d-flex flex-row " *ngFor="let data of data" style="display:flexbox; flex-direction: row; justify-content: center; margin-right: 5px ;" >
         <div class="card" style="width: 18rem;">
             <img src="{{ data.artUrl }}" class="card-img-top" alt="..." width="150px" height="150px"/>
             <div class="card-body" style="display: flex;flex-direction: column; justify-content: space-between">
@@ -16,7 +16,7 @@
                 <!-- <div class="d-grid gap-2 d-md-block" style="margin-top: 5px;"> -->
                     <div class="d-grid gap-2" style="margin-top: 5px;">
                     <!-- <button type="button" class="btn btn-light me-md-2">Light</button> -->
-                    <button type="button" class="btn btn-dark" (click)="updateMarket(data.imageUid)">Legacy</button>
+                    <button type="button" class="btn btn-dark" (click)="paymentForArtist(data.imageUid ,data.artUrl, data.artistUid, data.price, data.artType, data.uuid)">Legacy</button>
                 </div>
             </div>
         </div>
