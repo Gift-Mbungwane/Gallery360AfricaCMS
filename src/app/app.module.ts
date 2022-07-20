@@ -62,8 +62,8 @@ import { ExhibitionGuard } from 'src/components/guards/exhibition.guard';
 import { PaymentDetailsComponent } from 'src/components/payment-details/payment-details.component';
 import { PaymentDetailsGuard } from 'src/components/guards/payment-details.guard';
 import { ModalComponent } from 'src/components/payment-details/modalComponent';
-import { AlertModule } from 'src/components/alert/alert.module';
-import { AlertService } from 'src/components/alert/alert.service';
+// import { AlertModule } from 'src/components/alert/alert.module';
+// import { AlertService } from 'src/components/alert/alert.service';
 
 // videogular
 
@@ -131,14 +131,14 @@ initializeApp(firebaseConfig);
     MdbTabsModule,
     MdbTooltipModule,
     MdbValidationModule,
-    AlertModule,
+    // AlertModule,
   ],
 
   exports: [],
   //services
   providers: [
     AuthenticationService,
-    AlertService,
+    // AlertService,
     AppComponent,
     ArtistGuard,
     UserGuard,
