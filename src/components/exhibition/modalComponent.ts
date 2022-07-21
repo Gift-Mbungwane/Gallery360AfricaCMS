@@ -6,16 +6,16 @@ import { AuthenticationService } from '../services/authentication.service';
 @Component({
   template: `
     <div class="modal-content" style="width:calc(100vw - 480px);">
-      <div class="modal-header">
+      <!-- <div class="modal-header">
         <button
           type="button"
           class="btn-close"
           aria-label="Close"
           (click)="close()"
         ></button>
-      </div>
-      <div class="modal-body">
-        <img src="{{ exhibitionImage }}" style="width:calc(98vw - 480px);" />
+      </div> -->
+      <div>
+        <img src="{{ exhibitionImage }}" style="width:calc(100vw - 480px);" />
       </div>
     </div>
   `,

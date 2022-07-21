@@ -6,7 +6,7 @@ import { AuthenticationService } from '../services/authentication.service';
 @Component({
   template: `
     <div class="modal-content" style="width:calc(100vw - 480px);">
-      <div class="modal-header">
+      <!-- <div class="modal-header">
         <button
           type="button"
           class="btn-close"
@@ -14,8 +14,9 @@ import { AuthenticationService } from '../services/authentication.service';
           (click)="close()"
         ></button>
       </div>
-      <div class="modal-body">
-        <img src="{{ artUrl }}" style="width:calc(98vw - 480px);" />
+      -->
+      <div>
+        <img src="{{ artUrl }}" style="width:calc(100vw - 480px);" />
       </div>
       <!--
       <div class="modal-footer">
