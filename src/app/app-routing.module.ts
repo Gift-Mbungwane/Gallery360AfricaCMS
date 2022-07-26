@@ -9,6 +9,7 @@ import { PaymentDetailsGuard } from 'src/components/guards/payment-details.guard
 import { UserGuard } from 'src/components/guards/user.guard';
 import { MarketApprovalComponent } from 'src/components/market-approval/market-approval.component';
 import { OnErrorComponent } from 'src/components/on-error/on-error.component';
+import { OrdersComponent } from 'src/components/orders/orders.component';
 import { PaymentDetailsComponent } from 'src/components/payment-details/payment-details.component';
 import { PaymentFailureComponent } from 'src/components/payment-failure/payment-failure.component';
 import { PaymentGatewayComponent } from 'src/components/payment-gateway/payment-gateway.component';
@@ -36,6 +37,7 @@ export const routes: Routes = [
   { path: 'Payment', component: PaymentGatewayComponent },
   { path: 'Failure', component: PaymentFailureComponent },
   { path: 'Success', component: PaymentSuccessComponent },
+  { path: 'Orders', component: OrdersComponent },
   { path: '404', component: OnErrorComponent },
   {
     path: 'payment-details',

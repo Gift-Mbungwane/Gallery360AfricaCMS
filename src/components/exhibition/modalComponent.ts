@@ -15,7 +15,11 @@ import { AuthenticationService } from '../services/authentication.service';
         ></button>
       </div> -->
       <div>
-        <img src="{{ exhibitionImage }}" style="width:calc(100vw - 480px);" />
+        <img
+          class="rounded"
+          style="width:calc(100vw - 480px);height: 90vh;"
+          src="{{ exhibitionImage }}"
+        />
       </div>
     </div>
   `,

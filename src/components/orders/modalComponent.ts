@@ -13,16 +13,18 @@ import { AuthenticationService } from '../services/authentication.service';
           aria-label="Close"
           (click)="close()"
         ></button>
-      </div>
-      -->
+      </div> -->
       <div>
         <img
           class="rounded"
           style="width:calc(100vw - 480px);height: 90vh;"
           src="{{ artUrl }}"
         />
-      </div>
-      <!--
+        <div class="card-img-overlay item-infor-modal">
+          <p class="item-detail-modal item">{{ artistName }}</p>
+          <p class="item-detail-modal item">{{ artName }}</p>
+        </div>
+        <!--
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="close()">
           Close
@@ -30,12 +32,16 @@ import { AuthenticationService } from '../services/authentication.service';
         <button type="button" class="btn btn-primary">Save changes</button>
       </div>
       -->
+      </div>
     </div>
   `,
+  styleUrls: ['./orders.component.scss'],
 })
 export class ModalComponent implements OnInit {
   artUrl: String | null = null;
   title: string | null = null;
+  artistName: string | null = null;
+  artName: string | null = null;
 
   constructor(
     public router: Router,

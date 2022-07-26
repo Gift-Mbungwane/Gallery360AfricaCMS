@@ -62,6 +62,7 @@ import { ExhibitionGuard } from 'src/components/guards/exhibition.guard';
 import { PaymentDetailsComponent } from 'src/components/payment-details/payment-details.component';
 import { PaymentDetailsGuard } from 'src/components/guards/payment-details.guard';
 import { ModalComponent } from 'src/components/payment-details/modalComponent';
+import { OrdersComponent } from 'src/components/orders/orders.component';
 // import { AlertModule } from 'src/components/alert/alert.module';
 // import { AlertService } from 'src/components/alert/alert.service';
 
@@ -100,6 +101,7 @@ initializeApp(firebaseConfig);
     onDisableUserModal,
     onDisableExhibitionModal,
     ModalComponent,
+    OrdersComponent,
   ],
   //Modules
   imports: [

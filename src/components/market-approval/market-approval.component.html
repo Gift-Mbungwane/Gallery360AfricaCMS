@@ -33,7 +33,10 @@
                         <a class="nav-link" [routerLink]="['/Artist',{id:uid}]">Artist</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/payment-details',{id:uid}]">Payment-History</a>
+                        <a class="nav-link" [routerLink]="['/payment-details',{id:uid}]">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/Orders',{id:uid}]">order</a>
                     </li>
                 </ul>
             </div>
@@ -58,8 +61,8 @@
                 </mat-card-title-group>
                 </mat-card-title-group>
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <button class="btn btn-primary me-md-2"   [disabled]="data.isEnabled" autocomplete="off" type="button" (click)="approveArt(data.ImageUid)">Approve</button>
-    <button class="btn btn-danger" type="button" autocomplete="off" (click)="onDisable(data.ImageUid)" [disabled]="!data.isEnabled">Decline</button>
+    <button class="btn me-md-2"   [disabled]="data.isEnabled" autocomplete="off" type="button" (click)="approveArt(data.ImageUid)"  style="color: '#CEB89E';">Approve</button>
+    <button class="btn" type="button" autocomplete="off" (click)="onDisable(data.ImageUid)" [disabled]="!data.isEnabled" style="color:'#FF3636';">Decline</button>
     </div>
     <mat-card-content style="display:flex; margin-top: 10px;">
         {{data.description}}

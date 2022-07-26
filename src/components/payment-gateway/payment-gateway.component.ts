@@ -196,6 +196,7 @@ export class PaymentGatewayComponent implements OnInit {
             transactionId: details.id,
             date: `${moment(new Date()).format('DD-MM-YYYY').toString()}`,
             uuid: this.uid,
+            isDelivered: false,
             // uuid: this.paramsObject.params.id,
             emailAddress: details.payer.email_address,
             payerId: details.payer.payer_id,

@@ -1,0 +1,206 @@
+.left-container {
+    display: flex;
+    align-self: flex-start;
+    height: 100vh;
+    width: 40%;
+}
+
+.top-container {
+    display: flex;
+    height: 100vh;
+    width: 97%;
+}
+
+.bottom-container {
+    display: flex;
+    height: 60vh;
+    width: 97%;
+}
+
+.body {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100%;
+   
+}
+.right-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 10px;
+    height: 100vh;
+    width: 75%;
+}
+
+.pannel {
+    display: flex;
+    height: 100vh;
+    width: 50%;
+}
+
+.pannel-header{
+    display: flex;
+    flex-direction: row;
+}
+
+.pannel-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 10vh;
+    border-radius: 15px;
+    margin-top: 20px;
+}
+.side-card-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 12vh;
+    border-radius: 15px;
+    margin-top: 20px;
+}
+.side-card {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    justify-content: space-between;
+    margin-top: -30px;
+    width: calc(68vw - 480px);
+}
+
+.right-top-view {
+    display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 20vh;
+        margin-top: 30px;
+        width: 100%;
+}
+.card-header-body {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin-left: 0px;
+    justify-content: flex-start;
+}
+
+.card-header{
+display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+}
+
+.card-date {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-self: center;
+    margin-right: 15px;
+    margin-top: 15px;
+}
+
+.viewed-date {
+    display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-self: center;
+        margin-right: 0px;
+        margin-top: 15px;
+}
+
+.buyer-style {
+    display: flex;
+    margin-top: 10px;
+}
+.buyerId-style {
+    display: flex;
+    margin-top: -15px;
+}
+.buyerEmail-style{
+    display: flex;
+    margin-top: -10px;
+}
+
+.view-body {
+    display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 8vh;
+        margin-top: 10px;
+        //background-color: blue;
+}
+
+.button-delivered {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: -10px;
+}
+
+.scrollspy-example-collapsible {
+    position: relative;
+    height: 100vh;
+    overflow: auto;
+}
+
+.container-card{
+    display: flex;
+    flex-direction: row;
+ width: 100%;
+ margin-top: -15px;
+    }
+
+.scrollspy-example-collapsible-2 {
+    display: flex;
+    flex-direction: row;
+    position: inherit;
+   // position: relative;
+    height: 100vh;
+    overflow: auto;
+    flex-direction: row;
+}
+
+.overlay-infor {
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+    width: 100%;
+    flex: 13px;
+    color: #FFFFFF;
+}
+
+.item-infor {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    justify-content: flex-start;
+    // background-color: red;
+    position: absolute;
+    margin-top: 25vh;
+}
+
+.item-infor-modal{
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    justify-content: flex-start;
+    // background-color: red;
+    position: absolute;
+    margin-top: 80vh;
+}
+
+.item-detail-modal {
+    display: flex;
+        align-self: flex-start;
+        color: #FFFFFF;
+}
+.item-detail {
+    display: flex;
+    align-self: flex-start;
+    color: #FFFFFF;
+}
+
+.item {
+        margin-top: -15px;
+}
