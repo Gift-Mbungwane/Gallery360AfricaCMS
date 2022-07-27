@@ -25,6 +25,7 @@ export class UserComponent implements OnInit {
   datas: any;
   isEnabled: any;
   modalRef: MdbModalRef<ModalComponent> | null = null;
+  isColor!: boolean;
 
   constructor(
     private router: Router,
@@ -34,6 +35,9 @@ export class UserComponent implements OnInit {
   ) {
     this.db = getFirestore();
     this.uid = this.route.snapshot.paramMap.get('id');
+    if (this.uid != '' && this.uid != null) {
+      this.isColor = true;
+    }
   }
 
   ngOnInit(): void {

@@ -77,7 +77,10 @@ export class AuthenticationService {
           (snapShot) => {
             const userName = snapShot.docs.map((doc) => doc.data().userName);
             // this.router.navigate(['about'], { relativeTo: this.route });
-            return this.router.navigate(['Market', { id: uid }]);
+            // return this.router.navigateByUrl('/Market', {
+            //   state: { id: `${uid}` },
+            // });
+            return this.router.navigate(['Market', `${uid}`]);
           }
         );
       }

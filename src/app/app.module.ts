@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -49,6 +50,7 @@ import { MdbScrollspyModule } from 'mdb-angular-ui-kit/scrollspy';
 import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
 import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
+
 //modals
 import { onDisableModal } from 'src/components/modalComponents/onDisableModal';
 import { onDisableArtistModal } from 'src/components/artist/modalComponents/onDisableArtistModal';
@@ -113,6 +115,7 @@ initializeApp(firebaseConfig);
     MatGridListModule,
     MatCardModule,
     MatButtonModule,
+    MatDatepickerModule,
     MatToolbarModule,
     MatIconModule,
     MatTabsModule,
@@ -133,6 +136,7 @@ initializeApp(firebaseConfig);
     MdbTabsModule,
     MdbTooltipModule,
     MdbValidationModule,
+
     // AlertModule,
   ],
 

@@ -27,6 +27,7 @@ export class MarketApprovalComponent implements OnInit {
   datas: any;
   db: any;
   isEnabled: any;
+  isColor!: boolean;
   modalRef: MdbModalRef<ModalComponent> | null = null;
 
   constructor(
@@ -37,6 +38,11 @@ export class MarketApprovalComponent implements OnInit {
   ) {
     this.db = getFirestore();
     this.uid = this.route.snapshot.paramMap.get('id');
+    if (this.uid != '' && this.uid != null) {
+      this.isColor = true;
+    }
+
+    console.log(this.uid);
   }
 
   ngOnInit(): void {

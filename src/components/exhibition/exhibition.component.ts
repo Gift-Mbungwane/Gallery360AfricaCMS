@@ -28,6 +28,7 @@ export class ExhibitionComponent implements OnInit {
   datas: any;
   isEnabled: any;
   modalRef: MdbModalRef<ModalComponent> | null = null;
+  isColor!: boolean;
 
   constructor(
     private router: Router,
@@ -38,6 +39,9 @@ export class ExhibitionComponent implements OnInit {
   ) {
     this.db = getFirestore();
     this.uid = this.route.snapshot.paramMap.get('id');
+    if (this.uid != '' && this.uid != null) {
+      this.isColor = true;
+    }
   }
   ngOnInit(): void {
     onSnapshot(

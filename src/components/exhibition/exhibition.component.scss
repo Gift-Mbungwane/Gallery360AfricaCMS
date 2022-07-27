@@ -1,0 +1,10 @@
+.height-adjustment {
+    height: 7vh;
+}
+
+.p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 380px;
+}

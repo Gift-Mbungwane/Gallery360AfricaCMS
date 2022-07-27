@@ -24,6 +24,7 @@ export class ArtistComponent implements OnInit {
   uid: any;
   datas: any;
   db: any;
+  isColor!: boolean;
   modalRef: MdbModalRef<ModalComponent> | null = null;
 
   constructor(
@@ -34,6 +35,9 @@ export class ArtistComponent implements OnInit {
   ) {
     this.db = getFirestore();
     this.uid = this.route.snapshot.paramMap.get('id');
+    if (this.uid != '' && this.uid != null) {
+      this.isColor = true;
+    }
   }
 
   ngOnInit(): void {

@@ -170,6 +170,24 @@ display: flex;
     color: #FFFFFF;
 }
 
+.description-overlay{
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 8vh;
+    position:absolute;
+    background-color: rgba(251, 251, 251, 0.7);
+}
+
+.description {
+    display: flex;
+    align-self: center;
+    position: absolute;
+    color: #0E1822;
+    width: 80%;
+}
+
 .item-infor {
     display: flex;
     flex-direction: column;
@@ -203,4 +221,8 @@ display: flex;
 
 .item {
         margin-top: -15px;
+}
+
+.height-adjustment {
+    height: 6vh;
 }

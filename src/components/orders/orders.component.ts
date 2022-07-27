@@ -28,6 +28,7 @@ export class OrdersComponent implements OnInit {
   dataByItem: any;
   transactionId: any;
   modalRef: MdbModalRef<ModalComponent> | null = null;
+  isColor!: boolean;
 
   constructor(
     private router: Router,
@@ -37,8 +38,13 @@ export class OrdersComponent implements OnInit {
   ) {
     //below are firebase rules
     //allow read, write : if request.auth != null;
+
     this.db = getFirestore();
     this.uid = this.route.snapshot.paramMap.get('id');
+    if (this.uid != '' && this.uid != null) {
+      this.isColor = true;
+    }
+    //Querying orders
     onSnapshot(
       query(
         collection(this.db, 'payment'),
@@ -93,7 +99,7 @@ export class OrdersComponent implements OnInit {
   }
 
   onDelivered(documentID: any): void {
-    const art = doc(collection(this.db, 'payment', documentID));
+    const art = doc(this.db, 'payment', documentID);
     updateDoc(art, { isDelivered: true })
       .then(() => {
         alert('Items have been delivered');
@@ -102,7 +108,7 @@ export class OrdersComponent implements OnInit {
   }
 
   onNotDelivered(documentID: any): void {
-    const art = doc(collection(this.db, 'payment', documentID));
+    const art = doc(this.db, 'payment', documentID);
     updateDoc(art, { isDelivered: false })
       .then(() => {
         alert('Items not delivered');

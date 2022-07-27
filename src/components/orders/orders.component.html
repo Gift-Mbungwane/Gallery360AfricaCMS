@@ -1,3 +1,32 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top height-adjustment">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" (click)="fixedNavbarExample2.toggle()"
+            aria-controls="fixedNavbarExample2" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div mdbCollapse #fixedNavbarExample2="mdbCollapse" class="collapse navbar-collapse" id="fixedNavbarExample2">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" aria-current="page" [routerLink]="['/Market/',uid]">Market</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/Exhibition/',uid]">Exhibition</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/User/',uid]">Users</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/Artist/',uid]">Artist</a>
+                </li>
+                <li class="nav-item" [style.background-color]="isColor? '#CEB89E': '#FFFFFF'">
+                    <a class="nav-link" [routerLink]="['/Orders/',uid]">Orders</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Navbar -->
 <div class="body" >
 <div class="card text-center left-container">
     <div class="card-header">
@@ -58,12 +87,13 @@
     <div class="scrollspy-example-collapsible-2 container-card">
     <div class="card-body container-card" *ngFor="let dataByItem of dataByItem">
         <div class="col">
-    <div class="card" style="max-width:'calc(100vw - 480px)';" >
+    <div class="card hover-overlay" style="max-width:'calc(100vw - 480px)';" >
         <img src="{{dataByItem.artUrl}}" height="300px" class="card-img" width="calc(100vw - 480px)" alt="{{dataByItem.artName}}" />
         <div class="card-img-overlay">
             <div class="card-title overlay-infor">
                 <h3 style="display: flex; margin-right:10px"><strong>{{dataByItem.artistName}}</strong></h3>
-                <i class="fas fa-info"  style="display: flex; margin-top:5px; size: 24;" type="button" (click)="openModal(dataByItem.artUrl, dataByItem.artistName, dataByItem.artName)"></i>
+                <i class="fas fa-info-circle"  style="display: flex; margin-top:5px; size: 24;" type="button" (click)="openModal(dataByItem.artUrl, dataByItem.artistName, dataByItem.artName)"></i>
+                
             </div>
             <div class="item-infor">
             <p class="item-detail">{{dataByItem.artName}}</p>
@@ -71,6 +101,7 @@
             <p class="item-detail item">R{{dataByItem.price}}.00</p>
             </div>
         </div>
+        <div class="mask description-overlay"><p class="description" >{{dataByItem.description}}</p></div>
     </div>
     
     </div>
