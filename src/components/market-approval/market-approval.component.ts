@@ -94,4 +94,11 @@ export class MarketApprovalComponent implements OnInit {
       console.log(message);
     });
   }
+
+  // collapseElementList = [].slice.call(document.querySelectorAll('.collapse'));
+  // collapseList = collapseElementList.map((collapseEl: any) => {
+  //   return new mdb.Collapse(collapseEl, {
+  //     toggle: false,
+  //   });
+  // });
 }

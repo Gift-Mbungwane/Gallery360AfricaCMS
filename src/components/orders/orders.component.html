@@ -30,13 +30,20 @@
 <div class="body" >
 <div class="card text-center left-container">
     <div class="card-header">
-        <div class="pannel-header">
-            <h2>Orders</h2>          
+        <div class="pannel-header-1">
+            <h2 style="color: #FFFFFF;">Orders</h2>          
+        </div>
+        <div class="pannel-header-2">
+            <mdb-form-control class="form-white">
+                <input mdbInput type="text" id="formWhite" class="form-control" name="searchTerm" 
+                [(ngModel)]="searchTerm" (input)="search(searchTerm)"/>
+                <label mdbLabel class="form-label" for="formWhite">Search by order's name</label>
+              </mdb-form-control>        
         </div>
     </div>
 
     <div class="scrollspy-example-collapsible">
-    <div class=" card card-body side-card-body" *ngFor="let data of data" [style.background-color]="data.transactionId === transactionId ? '#CEB89E' : '#FFFFFF'">
+    <div class=" card card-body side-card-body" *ngFor="let data of data | searchFilter: searchTerm; index as i" [style.background-color]="data.transactionId === transactionId ? '#CEB89E' : '#FFFFFF'">
         <div
          type="button"
         (click)="enableDisableRule(data.transactionId); viewMoreDetails(data); viewMoreArt(data.items)"
@@ -51,7 +58,6 @@
         </div>
     </div>
     </div>
-
 </div>
 
 <div class="right-container" >
@@ -62,13 +68,13 @@
     <div class="card-body">
         <div class="right-top-view" id="scrollable">
             <div class="card-header-body">
-                <h1 class="buyer-style">{{dataByUid.name ? dataByUid.name : data.name}}</h1>
-                <h3 class="buyerId-style">{{dataByUid.transactionId}}</h3>
-                <h3 class="buyerEmail-style">{{dataByUid.emailAddress}}</h3>
+                <h1 class="buyer-style">{{dataByUid.name}}</h1>
+                <h4 class="buyerId-style">{{dataByUid.transactionId}}</h4>
+                <h4 class="buyerEmail-style">{{dataByUid.emailAddress}}</h4>
             </div>
             <div class="viewed-date">
-                <h3 style="display: flex;align-self: flex-end;">{{dataByUid.date}}</h3>
-                <h3>{{dataByUid.address}}</h3>
+                <h4 style="display: flex;align-self: flex-end;">{{dataByUid.date}}</h4>
+                <h4>{{dataByUid.address}}</h4>
             </div>
         </div>
         <div class="view-body" id="scrollable">
@@ -88,12 +94,14 @@
     <div class="card-body container-card" *ngFor="let dataByItem of dataByItem">
         <div class="col">
     <div class="card hover-overlay" style="max-width:'calc(100vw - 480px)';" >
-        <img src="{{dataByItem.artUrl}}" height="300px" class="card-img" width="calc(100vw - 480px)" alt="{{dataByItem.artName}}" />
+        <img src="{{dataByItem.artUrl}}" height="300px" class="card-img" width="500px" alt="{{dataByItem.artName}}" />
         <div class="card-img-overlay">
             <div class="card-title overlay-infor">
+                <div class="float-left">
                 <h3 style="display: flex; margin-right:10px"><strong>{{dataByItem.artistName}}</strong></h3>
+                <h4 class="email">{{dataByItem.email}}</h4>
+                </div>
                 <i class="fas fa-info-circle"  style="display: flex; margin-top:5px; size: 24;" type="button" (click)="openModal(dataByItem.artUrl, dataByItem.artistName, dataByItem.artName)"></i>
-                
             </div>
             <div class="item-infor">
             <p class="item-detail">{{dataByItem.artName}}</p>
@@ -103,35 +111,6 @@
         </div>
         <div class="mask description-overlay"><p class="description" >{{dataByItem.description}}</p></div>
     </div>
-    
-    </div>
-    </div>
-    </div>
-</div>
-<!--
-<div class="card text-center bottom-container collapse multi-collapse mt-3"
-      id="multiCollapseExample2"
-      mdbCollapse
-      #buttonCollapse="mdbCollapse">
-    <div class="card-body" *ngFor="let dataByItem of dataByItem">
-        <div class="row row-cols-1 row-cols-md-2 g-4">
-            <div class="col">
-                <div class="card">
-                    <img src="{{dataByItem.artUrl}}" class="card-img"
-                        alt="Hollywood Sign on The Hill" />
-                        <div class="card-img-overlay">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">
-                                This is a wider card with supporting text below as a natural lead-in to additional
-                                content. This content is a little bit longer.
-                            </p>
-                            <p class="card-text">Last updated 3 mins ago</p>
-                        </div>
-                </div>
-            </div>
-            </div>
-    </div>
-</div>
--->
-</div>
-</div>
+  </div>
+ </div>
+</div></div></div></div>

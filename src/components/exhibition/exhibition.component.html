@@ -38,18 +38,18 @@
             </div>
         </nav>
         <!-- Navbar -->
-<div style="display: flexbox; margin-top:25px">
+<div style="display: flexbox; margin-top:40px">
 
     <mat-grid-list cols="3" rowHeight="80px">
-        <mat-grid-tile *ngFor="let data of datas" [colspan]="1" [rowspan]="7">
-            <mat-card style="width: 400px; ">
+        <mat-grid-tile *ngFor="let data of datas" [colspan]="1" [rowspan]="6.5">
+            <mat-card style="width: 400px; height: 88vh;">
                 <mat-card-title-group style="display: flex;flex-direction: column;">
                     <mat-card-title-group>
                         <img class="card-img-top" height="270px" src="{{data.exhibitionImage}}" type="button" (click)="openModal(data.exhibitionImage)">
                     </mat-card-title-group>
                     <mat-card-title-group style="display: flex; flex-direction: column;">
                         <p class="h2">name: {{data.exhibitionTitle}}</p>
-                        <p class="h3 p">address: {{data.address}}</p>
+                        <p class="h3 v">address: {{data.address}}</p>
                         <p class="h3">date: {{data.date}}</p>
                     </mat-card-title-group>
                 </mat-card-title-group>
@@ -62,13 +62,9 @@
                     <mat-card-content 
                      
                     style="display:flex; margin-top: 10px;">
-                    <a type="button"
-  data-mdb-toggle="collapse"
-  data-mdb-target="#collapseExample"
-  aria-expanded="false"
-  aria-controls="collapseExample">linkS</a>
-                        <p class="p collapse mt-3" id="collapseExample">{{data.description}}</p>
-                     
+  <p class="v">
+    {{data.description}}
+    </p>                     
                     </mat-card-content>
             </mat-card>
         </mat-grid-tile>

@@ -38,11 +38,11 @@
             </div>
         </nav>
       
-<div style="display: flexbox; margin-top:15px">
+<div style="display: flexbox; margin-top:40px">
 
-    <mat-grid-list cols="3" rowHeight="80px" class="card">
+    <mat-grid-list cols="3" rowHeight="75px" class="card">
         <mat-grid-tile *ngFor="let data of datas" [colspan]="1" [rowspan]="5.5">
-            <mat-card style="width: 410px; ">
+            <mat-card style="width: 410px;height: 70vh; ">
                 <mat-card-title-group style="display: flex;flex-direction: column;">
                     <mat-card-title-group>
                   <img class="card-img-top" height="270px" src="{{data.photoURL}}" type="button" (click)="openModal(data.photoURL)" >
@@ -58,7 +58,7 @@
                     <button class="btn" type="button" autocomplete="off" (click)="onDisable(data.uid)"
                         [disabled]="!data.isEnabled" style="color: '#FF3636'">Decline</button>
                 </div>
-
+                
             </mat-card>
             <!-- <img src='{{data.artUrl}}' style="background-color: black;"/> -->
         </mat-grid-tile>

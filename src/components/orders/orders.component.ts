@@ -12,23 +12,28 @@ import {
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { AuthenticationService } from '../services/authentication.service';
 import { ModalComponent } from './modalComponent';
+import { Orders } from './orders';
 
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss'],
 })
+
 export class OrdersComponent implements OnInit {
+  
   uid: any;
   userName: any;
   db: any;
-  data: any;
+  data!: Orders[] ;
   isDelivered!: boolean;
   dataByUid: any;
   dataByItem: any;
   transactionId: any;
+  searchTerm = '';
   modalRef: MdbModalRef<ModalComponent> | null = null;
   isColor!: boolean;
+  allOrders!: Orders[];
 
   constructor(
     private router: Router,
@@ -66,7 +71,9 @@ export class OrdersComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.data = this.allOrders;
+  }
 
   viewMoreDetails(data: any): void {
     this.dataByUid = data;
@@ -114,5 +121,11 @@ export class OrdersComponent implements OnInit {
         alert('Items not delivered');
       })
       .catch((error) => console.log('this error is on orders page'));
+  }
+
+  search(value: string): void {
+    this.data = this.allOrders.filter((val: any) =>
+     val.name.toLowerCase().includes(value)
+    );
   }
 }

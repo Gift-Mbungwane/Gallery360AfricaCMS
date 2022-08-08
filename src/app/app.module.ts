@@ -50,7 +50,8 @@ import { MdbScrollspyModule } from 'mdb-angular-ui-kit/scrollspy';
 import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
 import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
-
+//
+import { CdkAccordionModule } from '@angular/cdk/accordion';
 //modals
 import { onDisableModal } from 'src/components/modalComponents/onDisableModal';
 import { onDisableArtistModal } from 'src/components/artist/modalComponents/onDisableArtistModal';
@@ -65,6 +66,8 @@ import { PaymentDetailsComponent } from 'src/components/payment-details/payment-
 import { PaymentDetailsGuard } from 'src/components/guards/payment-details.guard';
 import { ModalComponent } from 'src/components/payment-details/modalComponent';
 import { OrdersComponent } from 'src/components/orders/orders.component';
+import { SearchFilterPipe } from 'src/components/searchfilter/search-filter.pipe';
+import { HttpClientModule } from '@angular/common/http';
 // import { AlertModule } from 'src/components/alert/alert.module';
 // import { AlertService } from 'src/components/alert/alert.service';
 
@@ -104,6 +107,7 @@ initializeApp(firebaseConfig);
     onDisableExhibitionModal,
     ModalComponent,
     OrdersComponent,
+    SearchFilterPipe,
   ],
   //Modules
   imports: [
@@ -136,7 +140,9 @@ initializeApp(firebaseConfig);
     MdbTabsModule,
     MdbTooltipModule,
     MdbValidationModule,
-
+    CdkAccordionModule,
+    HttpClientModule,
+    
     // AlertModule,
   ],
 

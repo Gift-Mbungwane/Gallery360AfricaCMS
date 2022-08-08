@@ -47,7 +47,7 @@ export const routes: Routes = [
     path: 'payment-details/:id',
     component: PaymentDetailsComponent,
     canActivate: [PaymentDetailsGuard],
-  },
+  }
 ];
 
 @NgModule({
