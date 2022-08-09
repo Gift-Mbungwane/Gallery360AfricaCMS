@@ -40,22 +40,24 @@
         <!-- Navbar -->
 <div style="display: flexbox; margin-top:40px">
 
-    <mat-grid-list cols="3" rowHeight="80px">
+    <mat-grid-list cols="3" rowHeight="70px">
         <mat-grid-tile *ngFor="let data of datas" [colspan]="1" [rowspan]="6.5">
-            <mat-card style="width: 400px; height: 88vh;">
+            <mat-card style="width: 400px; height: 80vh;">
                 <mat-card-title-group style="display: flex;flex-direction: column;">
                     <mat-card-title-group>
                         <img class="card-img-top" height="270px" src="{{data.exhibitionImage}}" type="button" (click)="openModal(data.exhibitionImage)">
                     </mat-card-title-group>
                     <mat-card-title-group style="display: flex; flex-direction: column;">
                         <p class="h2">name: {{data.exhibitionTitle}}</p>
-                        <p class="h3 v">address: {{data.address}}</p>
+                        <div class="p-alignment h3">
+                        <p>address:</p><p class="address v">{{data.address}}</p>
+                        </div>
                         <p class="h3">date: {{data.date}}</p>
                     </mat-card-title-group>
                 </mat-card-title-group>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <button class="btn me-md-2" [disabled]="data.isEnabled" autocomplete="off" type="button"
-                        (click)="approveExhibition(data.exhibitionUid)" style="color: '#CEB89E'">Approve</button>
+                        (click)="approveExhibition(data.exhibitionUid)" style="color: '#0E1822'">Approve</button>
                     <button class="btn" type="button" autocomplete="off" (click)="onDisable(data.exhibitionUid)"
                         [disabled]="!data.isEnabled" style="color: '#FF3636'">Decline</button>
                 </div>

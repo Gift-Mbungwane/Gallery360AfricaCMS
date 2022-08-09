@@ -68,10 +68,6 @@ import { ModalComponent } from 'src/components/payment-details/modalComponent';
 import { OrdersComponent } from 'src/components/orders/orders.component';
 import { SearchFilterPipe } from 'src/components/searchfilter/search-filter.pipe';
 import { HttpClientModule } from '@angular/common/http';
-// import { AlertModule } from 'src/components/alert/alert.module';
-// import { AlertService } from 'src/components/alert/alert.service';
-
-// videogular
 
 //configure firebase
 const firebaseConfig = {

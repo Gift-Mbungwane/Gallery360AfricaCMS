@@ -40,7 +40,7 @@
       
 <div style="display: flexbox; margin-top:40px">
 
-    <mat-grid-list cols="3" rowHeight="75px" class="card">
+    <mat-grid-list cols="3" rowHeight="70px" class="card">
         <mat-grid-tile *ngFor="let data of datas" [colspan]="1" [rowspan]="5.5">
             <mat-card style="width: 410px;height: 70vh; ">
                 <mat-card-title-group style="display: flex;flex-direction: column;">
@@ -54,7 +54,7 @@
                 </mat-card-title-group>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <button class="btn me-md-2" [disabled]="data.isEnabled" autocomplete="off" type="button"
-                        (click)="approveUser(data.uid)" style="color: '#CEB89E'">Approve</button>
+                        (click)="approveUser(data.uid)" style="color: '#0E1822'">Approve</button>
                     <button class="btn" type="button" autocomplete="off" (click)="onDisable(data.uid)"
                         [disabled]="!data.isEnabled" style="color: '#FF3636'">Decline</button>
                 </div>
