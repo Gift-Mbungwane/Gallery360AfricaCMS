@@ -203,7 +203,7 @@ export class PaymentGatewayComponent implements OnInit {
             items: this.datas,
             status: details.status,
           });
-          updateDoc(docRef, { documentID: docRef.id });
+          updateDoc(docRef, { documentID: docRef.id }).then(() => {this.router.navigateByUrl('Success')}).catch((error) => console.log(error));
         });
       },
       onClientAuthorization: (data) => {
@@ -217,11 +217,12 @@ export class PaymentGatewayComponent implements OnInit {
         console.log('OnCancel', data, actions);
       },
       onError: (err) => {
-        console.log('OnError', err);
+        this.router.navigateByUrl('Failure');
+        //console.log('OnError', err);
       },
-      onClick: (data, actions) => {
-        console.log('onClick', data, actions);
-      },
+      // onClick: (data, actions) => {
+      //   console.log('onClick', data, actions);
+      // },
     };
   }
 }

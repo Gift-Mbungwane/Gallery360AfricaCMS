@@ -79,7 +79,7 @@
         </div>
         <div class="view-body" id="scrollable">
             <div class="card-header-body">
-                <h1 class="buyer-style">${{dataByUid.totalAmount}}.00</h1>
+                <h1 class="buyer-style">${{dataByUid.totalAmount}}</h1>
             </div>
             <div class="viewed-date button-delivered">
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -90,11 +90,19 @@
         </div>
     </div>
 
-    <div class="scrollspy-example-collapsible-2 container-card">
-    <div class="card-body container-card" *ngFor="let dataByItem of dataByItem">
+   
+    <!-- <div class="scroll-container container-card"
+   > -->
+   <div class="scroll-container">
+<!---->
+    <div  *ngFor="let dataByItem of dataByItem">
         <div class="col">
-    <div class="card hover-overlay" style="max-width:'calc(100vw - 480px)';" >
-        <img src="{{dataByItem.artUrl}}" height="300px" class="card-img" width="500px" alt="{{dataByItem.artName}}" />
+            <div class="card">
+                <img src="{{dataByItem.artUrl}}"  class="card-img" alt="{{dataByItem.artName}}"/>
+            </div>
+
+    <!-- <div class="card hover-overlay"  >
+        <img src="{{dataByItem.artUrl}}" height="300px" class="card-img" width="500px" alt="{{dataByItem.artName}}"  min-width="400px"/>
         <div class="card-img-overlay">
             <div class="card-title overlay-infor">
                 <div class="float-left">
@@ -110,7 +118,8 @@
             </div>
         </div>
         <div class="mask description-overlay"><p class="description" >{{dataByItem.description}}</p></div>
-    </div>
+    </div> -->
+    
   </div>
  </div>
 </div></div></div></div>

@@ -11,4 +11,8 @@ export class PaymentFailureComponent implements OnInit {
   ngOnInit(): void {
     // window.location.pathname = '';
   }
+
+  onPress(): void {
+    window.location.href;
+  }
 }

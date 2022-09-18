@@ -34,6 +34,8 @@ export class OrdersComponent implements OnInit {
   modalRef: MdbModalRef<ModalComponent> | null = null;
   isColor!: boolean;
   allOrders!: Orders[];
+  showScroll?: boolean;
+
 
   constructor(
     private router: Router,

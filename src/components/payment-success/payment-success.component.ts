@@ -40,4 +40,7 @@ export class PaymentSuccessComponent implements OnInit {
     //   .catch((error) => alert(error));
     //window.location.href.
   }
+  onPress(): void {
+    window.location.href;
+  }
 }

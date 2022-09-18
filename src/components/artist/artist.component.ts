@@ -20,7 +20,7 @@ import { ModalComponent } from './modalComponent';
   styleUrls: ['./artist.component.scss'],
 })
 export class ArtistComponent implements OnInit {
-  userName: any;
+  userName!: string;
   uid: any;
   datas: any;
   db: any;
@@ -48,6 +48,7 @@ export class ArtistComponent implements OnInit {
         // where('status', '==', 'pending')
       ),
       (snapShot) => {
+        
         const data = snapShot.docs.map((doc) => doc.data());
         this.datas = data;
       }

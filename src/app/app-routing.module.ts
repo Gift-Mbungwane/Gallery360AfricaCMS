@@ -39,8 +39,8 @@ export const routes: Routes = [
     canActivate: [ArtistGuard],
   },
   { path: 'Payment/:id', component: PaymentGatewayComponent },
-  { path: 'Failure/:id', component: PaymentFailureComponent },
-  { path: 'Success/:id', component: PaymentSuccessComponent },
+  { path: 'Failure', component: PaymentFailureComponent },
+  { path: 'Success', component: PaymentSuccessComponent },
   { path: 'Orders/:id', component: OrdersComponent },
   { path: '404/:id', component: OnErrorComponent },
   {
