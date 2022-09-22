@@ -91,35 +91,26 @@
     </div>
 
    
-    <!-- <div class="scroll-container container-card"
-   > -->
-   <div class="scroll-container">
-<!---->
-    <div  *ngFor="let dataByItem of dataByItem">
-        <div class="col">
-            <div class="card">
-                <img src="{{dataByItem.artUrl}}"  class="card-img" alt="{{dataByItem.artName}}"/>
-            </div>
-
-    <!-- <div class="card hover-overlay"  >
-        <img src="{{dataByItem.artUrl}}" height="300px" class="card-img" width="500px" alt="{{dataByItem.artName}}"  min-width="400px"/>
-        <div class="card-img-overlay">
-            <div class="card-title overlay-infor">
-                <div class="float-left">
-                <h3 style="display: flex; margin-right:10px"><strong>{{dataByItem.artistName}}</strong></h3>
-                <h4 class="email">{{dataByItem.email}}</h4>
+    <div class="scrollspy-example-collapsible-2">
+        <div class="card-body container-card" *ngFor="let dataByItem of dataByItem">
+            <div class="row">
+        <div class="card" >
+            <img src="{{dataByItem.artUrl}}" height="300px" class="card-img" width="calc(100vw - 480px)" alt="{{dataByItem.artName}}" />
+            <div class="card-img-overlay">
+                <div class="card-title overlay-infor">
+                    <h3 style="display: flex; margin-right:10px"><strong>{{dataByItem.artistName}}</strong></h3>
+                    <i class="fas fa-info"  style="display: flex; margin-top:5px; size: 24;" type="button" (click)="openModal(dataByItem.artUrl, dataByItem.artistName, dataByItem.artName)"></i>
                 </div>
-                <i class="fas fa-info-circle"  style="display: flex; margin-top:5px; size: 24;" type="button" (click)="openModal(dataByItem.artUrl, dataByItem.artistName, dataByItem.artName)"></i>
-            </div>
-            <div class="item-infor">
-            <p class="item-detail">{{dataByItem.artName}}</p>
-            <p class="item-detail item">{{dataByItem.artType}}</p>
-            <p class="item-detail item">R{{dataByItem.price}}.00</p>
+                <div class="item-infor">
+                <p class="item-detail">{{dataByItem.artName}}</p>
+                <p class="item-detail item">{{dataByItem.artType}}</p>
+                <p class="item-detail item">R{{dataByItem.price}}.00</p>
+                </div>
             </div>
         </div>
-        <div class="mask description-overlay"><p class="description" >{{dataByItem.description}}</p></div>
-    </div> -->
-    
-  </div>
- </div>
-</div></div></div></div>
+        
+        </div>
+        </div>
+        </div>
+
+</div></div></div>

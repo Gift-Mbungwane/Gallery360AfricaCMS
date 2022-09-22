@@ -36,7 +36,6 @@ export class OrdersComponent implements OnInit {
   allOrders!: Orders[];
   showScroll?: boolean;
 
-
   constructor(
     private router: Router,
     public authenticationService: AuthenticationService,
@@ -60,10 +59,10 @@ export class OrdersComponent implements OnInit {
       ),
       (snapShot: any) => {
         const datas = snapShot.docs.map((document: any) => document.data());
-
         const artypes = snapShot.docs.map(
           (document: any) => document.data().items
         );
+        console.log(datas[0])
         this.dataByItem = artypes[0];
         const sizes = snapShot.size;
         this.dataByUid = datas[0];
