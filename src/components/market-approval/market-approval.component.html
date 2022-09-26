@@ -14,8 +14,8 @@
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" (click)="fixedNavbarExample2.toggle()"
                 aria-controls="fixedNavbarExample2" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-bars">
-                  <a class="nav-link" aria-current="page" [routerLink]="['/Market']">Market</a>
+                <i class="fas fa-bars ">
+                  <!-- <a class="nav-link" aria-current="page" [routerLink]="['/Market']">Market</a> -->
                 </i>
             </button>
             <div mdbCollapse #fixedNavbarExample2="mdbCollapse" class="collapse navbar-collapse" id="fixedNavbarExample2">
@@ -40,36 +40,41 @@
         </div>
     </nav>
     <!-- Navbar end -->
-    <div style="display:flexbox; margin-top:40px">
 
-    <mat-grid-list cols="3" rowHeight="90px" >
-        <mat-grid-tile *ngFor="let data of datas" [colspan]="1" [rowspan]="7" 
-            >
-            <mat-card style="width: 400px; height: 60vh;">
-                <mat-card-title-group style="display: flex;flex-direction: column;">
-                    <mat-card-title-group>
-                        <img class="card-img-top" height="270px" src="{{data.artUrl}}" type="button" (click)="openModal(data.artUrl)">
-                    </mat-card-title-group>
-                <mat-card-title-group style="display: flex; flex-direction: column;">
-                    <p class="h2">{{data.artType}}</p>
-                    <p class="h3">name: {{data.artName}}</p>
-                    <p class="h4">size: {{data.artSize}}</p>
-                    <p class="h3">price: R{{data.price}}.00</p>
-                </mat-card-title-group>
-                </mat-card-title-group>
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <button class="btn me-md-2"   [disabled]="data.isEnabled" autocomplete="off" type="button" (click)="approveArt(data.ImageUid)"  style="color: '#0E1822';">Approve</button>
-    <button class="btn" type="button" autocomplete="off" (click)="onDisable(data.ImageUid)" [disabled]="!data.isEnabled" style="color:'#FF3636';">Decline</button>
+<div style="display: flex; justify-content: center ;margin-top: 3.5%;width: 100%;">
+<div class="columns">
+    <div class="column"  *ngFor="let data of datas" >
+          <div class="card mb-1">
+            <div class="" style="display: flex; width: 100%;">
+              <div class="col-md-4" style="width: 40%;" mdbRipple rippleColor="light">
+                <img
+                type="button"
+                height="100vh"
+                  src="{{data.artUrl}}"
+                  alt="Trendy Pants and Shoes"
+                  class="img-fluid rounded-start hover-overlay"
+                  (click)="openModal(data.artUrl)"
+                />
+              </div>
+              <div class="col-md-4" style="width: 60%;">
+                <div class="card-body">
+                  <h1 class="card-title">{{data.artType}}</h1>
+                    <p class="card-text">name: {{data.artName}} <br>
+                    size: {{data.artSize}}<br>
+                    price: R{{data.price}}.00
+                </p>
+                  <!-- <p class="card-text">
+                    <small class="text-muted">Last updated 3 mins ago</small>
+                  </p> -->
+                    <div class="d-grid gap-0 d-md-flex justify-content-md-end">
+                    <button class="btn me-md-2"   [disabled]="data.isEnabled" autocomplete="off" type="button" (click)="approveArt(data.ImageUid)"  style="color: '#0E1822';">Approve</button>
+                    <button class="btn" type="button" autocomplete="off" (click)="onDisable(data.ImageUid)" [disabled]="!data.isEnabled" style="color:'#FF3636';">Decline</button>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
     </div>
-    <mat-card-content style="display:flex; margin-top: 10px;">
-        <p class="v" type="button">
-            {{data.description}}
-            </p> 
-    </mat-card-content>
-    </mat-card>
-    <!-- <img src='{{data.artUrl}}' style="background-color: black;"/> -->
-    </mat-grid-tile>
-    </mat-grid-list>
-</div>
+ </div></div>
 </body>
 </html>

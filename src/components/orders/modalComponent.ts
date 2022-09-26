@@ -5,19 +5,11 @@ import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   template: `
-    <div class="modal-content" style="width:calc(100vw - 480px);">
-      <!-- <div class="modal-header">
-        <button
-          type="button"
-          class="btn-close"
-          aria-label="Close"
-          (click)="close()"
-        ></button>
-      </div> -->
+    <div class="modal-content" style="width:100%;">
       <div>
         <img
           class="rounded"
-          style="width:calc(100vw - 480px);height: 90vh;"
+          style="width:100%;height: 90vh;"
           src="{{ artUrl }}"
         />
         <div class="card-img-overlay item-infor-modal">

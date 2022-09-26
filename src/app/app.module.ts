@@ -66,7 +66,7 @@ import { PaymentDetailsComponent } from 'src/components/payment-details/payment-
 import { PaymentDetailsGuard } from 'src/components/guards/payment-details.guard';
 import { ModalComponent } from 'src/components/payment-details/modalComponent';
 import { OrdersComponent } from 'src/components/orders/orders.component';
-import { SearchFilterPipe } from 'src/components/searchfilter/search-filter.pipe';
+import { searchDateFilterPipe, SearchFilterPipe } from 'src/components/searchfilter/search-filter.pipe';
 import { HttpClientModule } from '@angular/common/http';
 
 //configure firebase
@@ -104,6 +104,7 @@ initializeApp(firebaseConfig);
     ModalComponent,
     OrdersComponent,
     SearchFilterPipe,
+    searchDateFilterPipe,
   ],
   //Modules
   imports: [

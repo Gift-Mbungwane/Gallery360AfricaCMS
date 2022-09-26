@@ -1,26 +1,8 @@
-#align {
+.align {
     display: 'flex';
     align-self: 'center';
-    margin-right: 15px;
-    height: 230px;
-    width: 380px;
-    // border: 1px solid green;
-}
+    margin-left: 15px;
 
-
-.height-adjustment {
-    height: 7vh;
-}
-
-
-.p {
-    display: flex;
-    white-space:wrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
-    max-height: 15vh;
-    
 }
 
  /* Hide scrollbar for Chrome, Safari and Opera */
@@ -50,3 +32,48 @@
     display: flex;
     margin-top: -20px;
 }
+
+
+.columns {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 30px;   
+}
+  
+.column{
+    display: flex;
+    flex-direction: row;
+    //flex: 33.33%;    
+}
+  
+  @media (min-width: 720px) {
+    .columns {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 100%;   
+    }
+
+    .column {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        -ms-flex: 0 0 31%;
+        flex: 0 0 31%;
+        max-width: 0 0 31%;
+    }
+  }
+  
+  .card-content {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .video{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    width: 90%;
+  }

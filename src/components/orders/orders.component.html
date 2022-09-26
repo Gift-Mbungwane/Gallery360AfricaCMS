@@ -28,88 +28,80 @@
 </nav>
 <!-- Navbar -->
 <div class="body" >
-<div class="card text-center left-container">
-    <div class="card-header">
-        <div class="pannel-header-1">
-            <h2 style="color: #FFFFFF;">Orders</h2>          
-        </div>
-        <div class="pannel-header-2">
-            <mdb-form-control class="form-white">
-                <input mdbInput type="text" id="formWhite" class="form-control" name="searchTerm" 
-                [(ngModel)]="searchTerm" (input)="search(searchTerm)"/>
-                <label mdbLabel class="form-label" for="formWhite">Search by order's name</label>
-              </mdb-form-control>        
-        </div>
-    </div>
 
-    <div class="scrollspy-example-collapsible">
-    <div class=" card card-body side-card-body" *ngFor="let data of data | searchFilter: searchTerm; index as i" [style.background-color]="data.transactionId === transactionId ? '#CEB89E' : '#FFFFFF'">
-        <div
-         type="button"
-        (click)="enableDisableRule(data.transactionId); viewMoreDetails(data); viewMoreArt(data.items)"
-        aria-controls="multiCollapseExample1 multiCollapseExample2" id="scrollable">
-            <div class="side-card" >
-                <div>
-                    <h2 class="buyer-style">{{data.name}}</h2>
-                    <p class="buyerId-style">{{data.transactionId}}</p>
+    <div class="left-pannel">
+        <div class="top-left-column">
+                <h2 class="order-text">Orders</h2>          
+                  <mdb-form-control class="form-white input">
+                    <input mdbInput type="text" id="formWhite" class="form-control" name="searchTerm" 
+                    [(ngModel)]="searchTerm" (input)="search(searchTerm)"/>
+                    <label mdbLabel class="form-label" for="formWhite">Search by order's name</label>
+                  </mdb-form-control>        
+        </div>
+        <div class="bottom-left-column">
+                <div class="card small-detailed-card" *ngFor="let data of data | searchFilter: searchTerm; index as i" [style.background-color]="data.transactionId === transactionId ? '#CEB89E' : '#FFFFFF'">
+                    <div
+                    class="side-card-infor"
+                     type="button"
+                    (click)="enableDisableRule(data.transactionId); viewMoreDetails(data); viewMoreArt(data.items)"
+                    aria-controls="multiCollapseExample1 multiCollapseExample2" id="scrollable">
+                        <div class="buyer-name-onCard">
+                            <h2>{{data.name}}</h2>
+                            <p class="buyerId-style text-muted">{{data.transactionId}}</p>
+                        </div>
+                        <div class="side-card-date">
+                            <p>{{data.date}}</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-date"><p>{{data.date}}</p></div>
-            </div>
         </div>
     </div>
+    <div class="right-pannel">
+                <div class="side-right-infor">
+                    <div class="buyer-name-onCard">
+                        <h1 style="font-size: 24px; font-weight: bold;">{{dataByUid.name}}</h1>
+                        <p class="buyerId-style-right">{{dataByUid.transactionId}}</p>
+                    </div>
+                    <div class="side-card-second-date">
+                        <p style="display:flex; font-size:18px; margin-left: 20%;">{{dataByUid.date}}</p> 
+                    </div>
+                </div>
+                <div class="side-right-address">
+                    <div>
+                    <h4 class="buyerEmail-style">{{dataByUid.emailAddress}}</h4>
+                    <h1 class="buyer-style">${{dataByUid.totalAmount}}</h1>
+                    </div>
+                    <div style="display: flex; flex-direction:column;">
+                        <address style="display: flex;font-size: 14px; margin-left: 20%;">{{dataByUid.address}}</address>   
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button class="btn me-md-2" type="button" [disabled]="dataByUid.isDelivered" style="border-radius: 20; color: '#0E1822';" (click)="onDelivered(dataByUid.documentID)">Delivered</button>
+                            <button class="btn" type="button" [disabled]="!dataByUid.isDelivered" style="color: '#FF3636';" (click)="onNotDelivered(dataByUid.documentID)">Not-Delivered</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="right-bottom-container" >
+                    <div class="item-details-row" *ngFor="let dataByItem of dataByItem">
+                      <div class="card bg-dark text-white item-details-card" >
+                        <img src="{{dataByItem.artUrl}}" class="card-img item-details-card-image" alt="Stony"/>
+                        <div class="card-img-overlay">
+                            <div class="card-title overlay-infor">
+                                <div>
+                                <h3 style="display: flex; margin-right:10px"><strong>{{dataByItem.artistName}}</strong></h3>
+                                <p class="email">{{dataByItem.email}}</p>
+                                </div>
+
+                                <i class="fas fa-info"  style="display: flex; margin-top:5px; size: 24;" type="button" (click)="openModal(dataByItem.artUrl, dataByItem.artistName, dataByItem.artName)"></i>
+                            </div>
+                            <div class="item-infor">
+                                <p class="item-detail">{{dataByItem.artName}}</p>
+                                <p class="item-detail item">{{dataByItem.artType}}</p>
+                                <p class="item-detail item">R{{dataByItem.price}}.00</p>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
     </div>
 </div>
-
-<div class="right-container" >
-<div class="card text-center top-container collapse multi-collapse mt-3"
-      id="multiCollapseExample1"
-      mdbCollapse
-      >
-    <div class="card-body">
-        <div class="right-top-view" id="scrollable">
-            <div class="card-header-body">
-                <h1 class="buyer-style">{{dataByUid.name}}</h1>
-                <h4 class="buyerId-style">{{dataByUid.transactionId}}</h4>
-                <h4 class="buyerEmail-style">{{dataByUid.emailAddress}}</h4>
-            </div>
-            <div class="viewed-date">
-                <h4 style="display: flex;align-self: flex-end;">{{dataByUid.date}}</h4>
-                <h4>{{dataByUid.address}}</h4>
-            </div>
-        </div>
-        <div class="view-body" id="scrollable">
-            <div class="card-header-body">
-                <h1 class="buyer-style">${{dataByUid.totalAmount}}</h1>
-            </div>
-            <div class="viewed-date button-delivered">
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button class="btn me-md-2" type="button" [disabled]="dataByUid.isDelivered" style="border-radius: 20; color: '#0E1822';" (click)="onDelivered(dataByUid.documentID)">Delivered</button>
-                <button class="btn" type="button" [disabled]="!dataByUid.isDelivered" style="color: '#FF3636';" (click)="onNotDelivered(dataByUid.documentID)">Not-Delivered</button>
-            </div>
-            </div>
-        </div>
-    </div>
-
-   
-    <div class="scrollspy-example-collapsible-2">
-        <div class="card-body container-card" *ngFor="let dataByItem of dataByItem">
-            <div class="row">
-        <div class="card" >
-            <img src="{{dataByItem.artUrl}}" height="100vh" class="card-img" width="100%" alt="{{dataByItem.artName}}" />
-            <div class="card-img-overlay">
-                <div class="card-title overlay-infor">
-                    <h3 style="display: flex; margin-right:10px"><strong>{{dataByItem.artistName}}</strong></h3>
-                    <i class="fas fa-info"  style="display: flex; margin-top:5px; size: 24;" type="button" (click)="openModal(dataByItem.artUrl, dataByItem.artistName, dataByItem.artName)"></i>
-                </div>
-                <div class="item-infor">
-                <p class="item-detail">{{dataByItem.artName}}</p>
-                <p class="item-detail item">{{dataByItem.artType}}</p>
-                <p class="item-detail item">R{{dataByItem.price}}.00</p>
-                </div>
-            </div>
-        </div>
-        </div>
-        </div>
-        </div>
-
-</div></div></div>

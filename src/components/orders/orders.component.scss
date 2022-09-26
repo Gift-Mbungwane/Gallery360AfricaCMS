@@ -1,22 +1,3 @@
-.left-container {
-    display: flex;
-    align-self: flex-start;
-    height: 100vh;
-    width: 40%;
-}
-
-.top-container {
-    display: flex;
-    height: 100vh;
-    width: 97%;
-}
-
-.bottom-container {
-    display: flex;
-    height: 60vh;
-    width: 97%;
-}
-
 .body {
     display: flex;
     flex-direction: row;
@@ -24,195 +5,135 @@
     width: 100%;
    
 }
-.right-container {
+.left-pannel {
+    display: flex;
+    width: 30%;
+    flex-direction: column;
+}
+.right-pannel {
     display: flex;
     flex-direction: column;
+    width: 70%;
+    background-color: green;
+}
+.top-left-column {
+    display: flex;
     justify-content: space-between;
-    margin-left: 10px;
-    height: 100vh;
-    width: 75%;
-}
-
-.pannel {
-    display: flex;
-    height: 100vh;
-    width: 50%;
-}
-
-.pannel-header-1{
-    display: flex;
-    align-self: flex-start;
-    //background-color: #FFFFFF;
-    margin-top: 20px;
-}
-
-.pannel-header-2{
-    display: flex;
-    align-self: flex-end;
-
-}
-
-.pannel-body {
-    display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    align-self: center;
+    margin-top: 9%;
+    width: 100%;
     height: 10vh;
-    border-radius: 15px;
-    margin-top: 20px;
-}
-.side-card-body {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    height: 12vh;
-    border-radius: 15px;
-    margin-top: 20px;
+    background-color: #0E1822;
 }
 
-.image-direction {
-    flex-direction: row;
+.bottom-left-column {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    position: relative;
+    overflow: auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 100%;
+    height: 90vh;
+    gap: 20px;
+    background-color: #FFFFFF;
 }
 
-.card-img {
+.input {
     display: flex;
-    min-width: none;
-    width: 300px;
-    height: 200px;
+    margin-right: 15px;
+    height: 6vh;
+    margin-top: 3%;
+}
+.order-text{
+    display:flex; 
+    color: #FFFFFF; 
+    margin-top: 3.5%; 
+    margin-left: 10px;
+}
+
+.small-detailed-card {
+    display: flex;
+    height: 10vh;
+    width: 95%;
+    align-self: center;
     
 }
-
-.side-card {
-    display: flex;
-    flex-direction: row;
-    align-self: center;
-    justify-content: space-between;
-    margin-top: -30px;
-    width: calc(68vw - 480px);
-}
-
-.right-top-view {
-    display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        height: 20vh;
-        margin-top: 10px;
-        width: 100%;
-}
-.card-header-body {
-    display: flex;
+.buyer-name-onCard {
+    display: flex;   
     flex-direction: column;
-    align-self: center;
-    margin-left: 0px;
-    justify-content: flex-start;
-}
-
-.card-header{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: 38px;
-    height: 14vh;
-    background-color: #0E1822;
-
-}
-
-
-.card-date {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-self: center;
-    margin-right: 30%;
-    margin-top: 45px;
-}
-
-.viewed-date {
-    display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        align-self: center;
-        margin-right: 0px;
-        margin-top: 15px;
-}
-
-.buyer-style {
-    display: flex;
-    margin-top: 10px;
+    margin-left: 5%;
 }
 .buyerId-style {
     display: flex;
-    margin-top: -15px;
+    margin-top: -15%;
 }
-.buyerEmail-style{
-    display: flex;
-    margin-top: -10px;
-}
-
-.view-body {
-    display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        height: 8vh;
-        margin-top: 10px;
-        //background-color: blue;
-}
-
-.button-delivered {
+.side-card-infor{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    margin-top: -10px;
-}
-
-.scrollspy-example-collapsible {
-    position: relative;
-    height: 100vh;
-    overflow: auto;
-}
-
-.container-card{
-    display: flex;
-    flex-direction: row;
-    
-    }
-
-.scrollspy-example-collapsible-2 {
-    display: flex;
-    flex-direction: row;
-    position: inherit;
-   // position: relative;
-    height: 100vh;
-    overflow: auto;
-    flex-direction: row;
-}
-
-.overlay-infor {
-    display: flex;
-    align-self: center;
-    justify-content: space-between;
     width: 100%;
-    flex: 13px;
-    color: #FFFFFF;
 }
-
-.description-overlay{
+.side-card-date {
     display: flex;
     align-self: center;
-    justify-content: space-between;
+    margin-left: 25%;
+}
+
+.side-card-second-date {
+    display: flex;
+    margin-left: 60%;
+    margin-top: 3%;
+}
+
+.side-right-infor {
+    display: flex;
+    flex-direction: row;
     width: 100%;
-    margin-top: 20vh;
-    height: 10vh;
-    background-color: rgba(251, 251, 251, 0.7);
+    margin-top: 5%;
 }
 
-.description {
+.buyerId-style-right {
+    display: flex; 
+    font-size:16px; 
+    font-weight: 300; 
+    margin-top: 1%;
+}
+
+.side-right-address{
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     align-self: center;
-    position: absolute;
-    color: #0E1822;
-    width: 80%;
+    width: 90%;
 }
 
+.right-bottom-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    height: 70vh;
+    width: 100%;
+    gap: 5px;   
+}
+
+.item-details-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.item-details-card {
+    width: 425px;
+    margin-top: 3%;
+    height: 50vh;
+    margin-left: 10%;
+}
+.item-details-card-image {
+    width: 400px;
+    height: 50vh;
+}
 .item-infor {
     display: flex;
     flex-direction: column;
@@ -220,9 +141,22 @@
     justify-content: flex-start;
     // background-color: red;
     position: absolute;
-    margin-top: 15vh;
+    margin-top: 40%;
+}
+.item-detail {
+    display: flex;
+    align-self: flex-start;
+    color: #FFFFFF;
+    
 }
 
+.item {
+        margin-top: -15px;
+}
+.email {
+    display: flex;
+    margin-top: -20px;
+}
 .item-infor-modal{
     display: flex;
     flex-direction: column;
@@ -232,23 +166,19 @@
     position: absolute;
     margin-top: 80vh;
 }
-
 .item-detail-modal {
     display: flex;
         align-self: flex-start;
         color: #FFFFFF;
 }
-
-.item-detail {
+.overlay-infor {
     display: flex;
-    align-self: flex-start;
+    align-self: center;
+    justify-content: space-between;
+    width: 100%;
+    flex: 13px;
     color: #FFFFFF;
 }
-
-.item {
-        margin-top: -15px;
-}
-
 .height-adjustment {
     height: 6vh;
 }
@@ -258,28 +188,50 @@
     flex-direction: column;
 }
 
-.email {
-    display: flex;
-    margin-top: 10px;
+@media(max-width: 890px) {
+    .top-left-column {
+        display: flex;
+       // justify-content: space-between;
+        flex-direction: column;
+        align-self: center;
+        height: 20vh;
+        width: 100%;
+    }
+    .input {
+        display: flex;
+        justify-content: center;
+        height: 6vh;
+        margin-bottom: 7%;
+        width: 80%;
+        align-self: center;
+    }
+    .order-text{
+        display: flex;
+        align-self: center;
+        
+    }
+    .side-card-second-date {
+        display: flex;
+        margin-left: 20%;
+        margin-top: 5%;
+    }
+    .item-details-card {
+        width: 425px;
+        margin-top: 3%;
+        height: 50vh;
+        margin-left: 5%;
+    }
+    .item-details-card-image {
+        width: 420px;
+        height: 50vh;
+    }
+    .item-infor {
+        display: flex;
+        flex-direction: column;
+        align-self: flex-start;
+        justify-content: flex-start;
+        // background-color: red;
+        margin-top: 20%;
+    }
 }
-
-
-// .scroll-container {
-//     display: flex;
-//     align-items: center;
-//     overflow: auto;
-//     margin-top: -50px;
-  
-//     &.hide-scrollbar {
-//       overflow: auto;
-//       &::-webkit-scrollbar {
-//         display: none;
-//       }
-//     }
-  
-//     &.show-scroll {
-//       overflow: auto;
-//     }
-  
-//   }
 

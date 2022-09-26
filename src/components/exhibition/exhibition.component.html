@@ -10,7 +10,7 @@
 
 <body>
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top height-adjustment">
+        <nav class="navbar navbar-expand-sm navbar-light bg-white fixed-top height-adjustment">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" (click)="fixedNavbarExample2.toggle()"
                     aria-controls="fixedNavbarExample2" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,40 +37,40 @@
                 </div>
             </div>
         </nav>
-        <!-- Navbar -->
-<div style="display: flexbox; margin-top:40px">
-
-    <mat-grid-list cols="3" rowHeight="85px">
-        <mat-grid-tile *ngFor="let data of datas" [colspan]="1" [rowspan]="6.5">
-            <mat-card style="width: 400px; height: 55vh;">
-                <mat-card-title-group style="display: flex;flex-direction: column;">
-                    <mat-card-title-group>
-                        <img class="card-img-top" height="270px" src="{{data.exhibitionImage}}" type="button" (click)="openModal(data.exhibitionImage)">
-                    </mat-card-title-group>
-                    <mat-card-title-group style="display: flex; flex-direction: column;">
-                        <p class="h2">name: {{data.exhibitionTitle}}</p>
-                        <div class="p-alignment h3">
-                        <p>address:</p><p class="address v"  type="button">{{data.address}}</p>
+        <!-- Navbar end -->
+    <div style="display: flex; justify-content: center ;margin-top: 3.5%;width: 100%;">
+        <div class="columns">
+            <div class="column"  *ngFor="let data of datas" >
+                  <div class="card mb-1">
+                    <div class="" style="display: flex; width: 100%;">
+                      <div class="col-md-4" style="width: 40%;" mdbRipple rippleColor="light">
+                        <img
+                        type="button"
+                        height="100vh"
+                          src="{{data.exhibitionImage}}"
+                          alt="Trendy Pants and Shoes"
+                          class="img-fluid rounded-start hover-overlay"
+                          (click)="openModal(data.exhibitionImage)"
+                        />
+                      </div>
+                      <div class="col-md-4" style="width: 60%;">
+                        <div class="card-body">
+                          <h1 class="card-title">{{data.exhibitionTitle}}</h1>
+                            <Address class="card-text">{{data.address}}</Address>
+                          <p class="card-text">
+                            <small class="text-muted">{{data.date}}</small>
+                          </p>
+                            <div class="d-grid gap-0 d-md-flex justify-content-md-end">
+                                <button class="btn me-md-2" [disabled]="data.isEnabled" autocomplete="off" type="button"
+                                (click)="approveExhibition(data.exhibitionUid)" style="color: '#0E1822'">Approve</button>
+                                <button class="btn" type="button" autocomplete="off" (click)="onDisable(data.exhibitionUid)"
+                                [disabled]="!data.isEnabled" style="color: '#FF3636'">Decline</button>
+                            </div>
                         </div>
-                        <p class="h3">date: {{data.date}}</p>
-                    </mat-card-title-group>
-                </mat-card-title-group>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button class="btn me-md-2" [disabled]="data.isEnabled" autocomplete="off" type="button"
-                        (click)="approveExhibition(data.exhibitionUid)" style="color: '#0E1822'">Approve</button>
-                    <button class="btn" type="button" autocomplete="off" (click)="onDisable(data.exhibitionUid)"
-                        [disabled]="!data.isEnabled" style="color: '#FF3636'">Decline</button>
-                </div>
-                    <mat-card-content 
-                     
-                    style="display:flex; margin-top: 10px;">
-  <p class="v" type="button">
-    {{data.description}}
-    </p>                     
-                    </mat-card-content>
-            </mat-card>
-        </mat-grid-tile>
-    </mat-grid-list>
-</div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+         </div></div>
 </body>
 </html>

@@ -38,11 +38,11 @@
             </div>
         </nav>
       
-<div style="display: flexbox; margin-top:40px">
+<!-- <div style="display: flexbox; margin-top:40px">
 
-    <mat-grid-list cols="3" rowHeight="90px" class="card">
-        <mat-grid-tile *ngFor="let data of datas" [colspan]="1" [rowspan]="6.5">
-            <mat-card style="width: 410px;height: 55vh; ">
+    <mat-grid-list cols="3" class="card">
+        <mat-grid-tile *ngFor="let data of datas">
+            <mat-card style="width: 410px;height: 95%; ">
                 <mat-card-title-group style="display: flex;flex-direction: column;">
                     <mat-card-title-group>
                   <img class="card-img-top" height="270px" src="{{data.photoURL}}" type="button" (click)="openModal(data.photoURL)" >
@@ -59,26 +59,43 @@
                         [disabled]="!data.isEnabled" style="color: '#FF3636'">Decline</button>
                 </div>
             </mat-card>
-            
-            <!-- <img src='{{data.artUrl}}' style="background-color: black;"/> -->
         </mat-grid-tile>
     </mat-grid-list>
-    <!-- <div class="wrapper">
-        <div class="overlay" *ngIf="showSpinner">
-          <div class="spinner-wrapper">
-            <app-spinner></app-spinner>
-          </div>
-        </div>
-      
-        <div class="loaded-content" [class.blurred]="showSpinner">
-            <div class="spinner-grow overlay-spinner" style="width: 7rem; height: 7rem;" role="status">
-                <span class="visually-hidden">Loading...</span>
+</div> -->
+
+<div style="display: flex; justify-content: center ;margin-top: 3.5%;width: 100%;">
+    <div class="columns">
+        <div class="column"  *ngFor="let data of datas" >
+              <div class="card mb-1">
+                <div class="" style="display: flex; width: 100%;">
+                  <div class="col-md-4" style="width: 40%;" mdbRipple rippleColor="light">
+                    <img
+                    type="button"
+                    height="100vh"
+                      src="{{data.photoURL}}"
+                      alt="Trendy Pants and Shoes"
+                      class="img-fluid rounded-start hover-overlay"
+                      (click)="openModal(data.photoURL)"
+                    />
+                  </div>
+                  <div class="col-md-4" style="width: 60%;">
+                    <div class="card-body">
+                      <h1 class="card-title">{{data.fullName}}</h1>
+                      <p class="card-text">
+                        <small class="text-muted">{{data.email}}</small>
+                      </p>
+                        <div class="d-grid gap-0 d-md-flex justify-content-md-end">
+                            <button class="btn me-md-2" [disabled]="data.isEnabled" autocomplete="off" type="button"
+                            (click)="approveUser(data.uid)" style="color: '#0E1822'">Approve</button>
+                            <button class="btn" type="button" autocomplete="off" (click)="onDisable(data.uid)"
+                            [disabled]="!data.isEnabled" style="color: '#FF3636'">Decline</button>
+                        </div>
+                    </div>
+                  </div>
+                </div>
               </div>
         </div>
-      </div> -->
-   
-    
-</div>
+     </div></div>
 
 </body>
 </html>
