@@ -60,10 +60,10 @@ export class AuthenticationService {
             installApp: true,
             minimumVersion: '12'
           },
-          handleCodeInApp: false
+          handleCodeInApp: true
         };
          await sendEmailVerification(user,actionCodeSettings).then(() => {
-            alert("email has been sent");
+            alert("email verification message has been sent");
          }).catch((error) => {
           alert(error);
           //alert('unable to verify email')
