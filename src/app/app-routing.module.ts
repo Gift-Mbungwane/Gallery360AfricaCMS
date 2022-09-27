@@ -14,6 +14,7 @@ import { PaymentDetailsComponent } from 'src/components/payment-details/payment-
 import { PaymentFailureComponent } from 'src/components/payment-failure/payment-failure.component';
 import { PaymentGatewayComponent } from 'src/components/payment-gateway/payment-gateway.component';
 import { PaymentSuccessComponent } from 'src/components/payment-success/payment-success.component';
+// import { ForgotPasswordComponent } from 'src/components/sign-in-screen/forgot-password.component';
 import { SignInScreenComponent } from 'src/components/sign-in-screen/sign-in-screen.component';
 import { SignUpScreenComponent } from 'src/components/sign-up-screen/sign-up-screen.component';
 import { UserComponent } from 'src/components/user/user.component';
@@ -43,6 +44,7 @@ export const routes: Routes = [
   { path: 'Success', component: PaymentSuccessComponent },
   { path: 'Orders/:id', component: OrdersComponent },
   { path: '404/:id', component: OnErrorComponent },
+  // {path: 'forgot', component: ForgotPasswordComponent},
   {
     path: 'payment-details/:id',
     component: PaymentDetailsComponent,

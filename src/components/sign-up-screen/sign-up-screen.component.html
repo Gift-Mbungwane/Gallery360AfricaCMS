@@ -1,102 +1,79 @@
-<html lang="en">
-
-<head>
-    <meta charset="utf-8" />
-    <title>Sign-IUp-Screen</title>
-    <base href="/">
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-
-<body>
-    <div style="display: flex; flex-direction: row;">
-    <div style="display: flex;
-      height: 100vh;
-      justify-content: 'center';
-      align-content: 'center';
-      background : linear-gradient(#CEB89E, #616161);
-      width: '50%';
-      
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;">
-    
-        <div style="display: flex;
-      flex-direction: column;
-      
-      align-self: 'center';
-      height: 100vh;">
-            <h3 style="color: aliceblue; font-family: 'Italic'; font-size: 12vh; align-self: 'center'; margin-top: 20vh;">Sign Up</h3>
-        <div style="display:flex; flex-direction: column; justify-content: space-between; margin-top: 10vh;">
-        <mdb-form-control>
-            <input mdbInput type="text" id="typeLabel" class="form-control" #userName required
-                [formControl]="userNameFormControl" />
-            <label mdbLabel class="form-label" for="typeText">Name:</label>
-        </mdb-form-control>
-        <mat-error *ngIf="userNameFormControl.invalid && (userNameFormControl.dirty || userNameFormControl.touched)" >
-        <mat-error *ngIf="!userNameFormControl.hasError('minLength')">
-            Name must be at least 4 characters long.
-        </mat-error>
-        </mat-error>
-        <mat-error *ngIf="userNameFormControl.hasError('maxLength') && userNameFormControl.hasError('required')">
-            Name should not acceed 25 letters
-        </mat-error>
-            <mdb-form-control style="display: flex;margin-top:2vh">
-                <input mdbInput type="email" id="typeEmail" class="form-control"
-                    [formControl]="emailFormControl" #userEmail />
-                <label mdbLabel class="form-label" for="typeEmail">Email:</label>
-            </mdb-form-control>
-            <mat-error *ngIf="emailFormControl.invalid && (emailFormControl.dirty || emailFormControl.touched)">
-            <mat-error *ngIf="!emailFormControl.hasError('required')">
-                Please enter a valid email address
-            </mat-error>
-            <mat-error *ngIf="!emailFormControl.hasError('pattern')">
-                email is required.
-            </mat-error>
-            </mat-error>
-            <mdb-form-control style="display: flex;margin-top:2vh">
-                <input mdbInput type="password" id="typePassword" class="form-control" #userPassword required />
-                <label mdbLabel class="form-label" for="typePassword">Password:</label>
-            </mdb-form-control>
-            <mat-error *ngIf="passwordFormControl.invalid && (passwordFormControl.dirty || passwordFormControl.touched)">
-            <mat-error *ngIf="!passwordFormControl.hasError('required')">
-                 password is required
-            </mat-error>
-            <mat-error *ngIf="!passwordFormControl.hasError('pattern')">
-            Please enter a valid Password
-            </mat-error>
-            </mat-error>
+<div style="display: flex; flex-direction:row">
+    <div class="right-container">
+            <div class="right-inner-container">
+                <h3 class="sign-title">Sign Up</h3>
+                <div class="Name">
+                    <form [formGroup]="userName">
+                        <mdb-form-control class="form-white form-group">
+                            <input mdbInput [class.is-invalid]="primName.invalid && primName.touched" type="name" class="form-control"
+                            formControlName="primaryName" #name/>
+                            <label mdbLabel class="form-label" for="formWhite">Name</label>
+                          </mdb-form-control> 
+                          <div *ngIf="(primEmail.invalid && primName.touched) || primName.dirty">
+                            <small *ngIf="primName?.hasError('required')" class="text-danger">name is required</small>
+                            <small *ngIf="primName?.hasError('hasCapitalCase')" class="text-danger">Must have at least one uppercase letter</small>
+                          </div>
+                    </form>
+                </div>
+                <div class="inputs">
+                    <form [formGroup]="userEmail">
+                        <mdb-form-control class="form-white form-group">
+                            <input mdbInput [class.is-invalid]="primEmail.invalid && primEmail.touched" type="email" class="form-control"
+                            formControlName="primaryEmail" #email/>
+                            <label mdbLabel class="form-label" for="formWhite">Email</label>
+                          </mdb-form-control> 
+                          <div *ngIf="(primEmail.invalid && primEmail.touched) || primEmail.dirty">
+                            <small *ngIf="primEmail?.hasError('required')" class="text-danger">email is required</small>
+                            <!--question mark(?) is a safe navigation operator-->
+                            <small *ngIf="primEmail?.hasError('pattern')" class="text-danger">Please provide a valid email address</small>
+                          </div>
+                    </form>
+                </div>
+                <div class="password">
+                    <form [formGroup]="userPassword">
+                        <mdb-form-control class="form-white form-group">
+                            <input mdbInput [class.is-invalid]="primPassword.invalid && primPassword.touched" type="password" class="form-control"
+                            formControlName="primaryPassword" #password/>
+                            <label mdbLabel class="form-label" for="formWhite">Password</label>
+                          </mdb-form-control> 
+                          <div *ngIf="(primPassword.invalid && primPassword.touched && primPassword.dirty)">
+                            <small *ngIf="primPassword?.hasError('required')" class="text-danger">password is required</small>
+                            </div>
+                    </form>
+                </div>
+                <div class="button-btn" >
+                    <button type="button" mdbRipple rippleColor="light" class="btn button-btn" style="color:#0E1822"
+                    [disabled]="primPassword.invalid || primEmail.invalid || primName.invalid"
+                    (click)="authenticationService.onSignUp(name.value, email.value, password.value)"
+                    >Sign up</button>
+                    <div class="forgot-account">
+                    <p style="color: '#FFFFFF'; align-self: center; margin-top:5%;">Have an account?<a [routerLink]="['/SignIn']"
+                        style="color: 'rgba(34, 24, 14, 1)';"> Sign In</a></p>
+                    </div>
+                </div>
+                <form [formGroup]="userPassword" class="password">
+                    <div *ngIf="(primPassword.invalid && primPassword.touched && primPassword.dirty)">
+                        <small *ngIf="primPassword?.hasError('hasSpecialCharacter')" class="text-danger">Must have at least one special characters</small>
+                        <br>
+                        <small *ngIf="primPassword?.hasError('hasNumber')" class="text-danger">
+                            Must have at least one digit</small><br>
+                        <small *ngIf="primPassword?.hasError('hasSmallCase')" class="text-danger">
+                            Must have at least one lowercase letter</small><br>
+                        <small *ngIf="primPassword?.hasError('hasCapitalCase')" class="text-danger">
+                            Must have at least one uppercase letter</small>
+                      </div>
+                </form>
             </div>
-
-            <button style="display: flex;margin-top:5vh; align-self: center;" type="button" class="btn btn-light btn-rounded d-grid gap-2 col-12 mx-auto" 
-                (click)="authenticationService.onSignUp(userName.value, userEmail.value, userPassword.value)">Sign Up</button>
-            <p style="color: '#FFFFFF'; align-self: center; margin-bottom: 5vh;">Have an account?<a [routerLink]="['/SignIn']" style="color: 'rgba(34, 24, 14, 1)';"> Sign In</a></p>
-        </div>
-    
     </div>
-        <div style="display: flex;
-          width: calc(100vw - 400px);
-          height: 100vh;
-          flex-direction: 'column';
-          justify-content: 'space-between';
-          background-size:cover;
-          background-image: url('../../assets/images/Splashscreen.png');
-          border-radius: 10px;
-  border-top-left-radius: 0px;
-  border-bottom-left-radius: 0px;">
-            <!-- <div style="display:flex; flex-direction:row;" > -->
-            <!-- <div style="display :flex; align-self: flex-start;border: 2px solid; width: 120vh; flex: 1 0 0 auto;"> -->
-        
-            <img src="../../assets/images/splash/logo.png" style="display: flex;
-                           height: 50vh;
-                        align-self: 'center';
-                        margin-top: 15vh;
-                        size: inherit;
-                       " />
-            <h1 style="align-self: center;"><span style="font-weight: bold;font-size: 54px; font-family: 'Poppins';">Gallery
-                    360</span><br><span style="align-self: center; margin-left: 15vh;">Africa</span></h1>
+    <div class="left-container">
+        <div class="left-inner-container">
+        <img 
+            src="../../assets/images/splash/logo.png" 
+            class="logo"/>
+            <div class="title">
+                <h1 class="title-name">Gallery 360<strong class="title-africa">Africa</strong></h1>
+            </div>
         </div>
-
     </div>
-</body>
+</div>
 
-</html>

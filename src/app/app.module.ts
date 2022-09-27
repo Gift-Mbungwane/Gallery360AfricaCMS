@@ -68,6 +68,7 @@ import { ModalComponent } from 'src/components/payment-details/modalComponent';
 import { OrdersComponent } from 'src/components/orders/orders.component';
 import { searchDateFilterPipe, SearchFilterPipe } from 'src/components/searchfilter/search-filter.pipe';
 import { HttpClientModule } from '@angular/common/http';
+import { ForgotPasswordComponent } from 'src/components/sign-in-screen/forgot-password.component';
 
 //configure firebase
 const firebaseConfig = {
@@ -103,6 +104,7 @@ initializeApp(firebaseConfig);
     onDisableExhibitionModal,
     ModalComponent,
     OrdersComponent,
+    ForgotPasswordComponent,
     SearchFilterPipe,
     searchDateFilterPipe,
   ],

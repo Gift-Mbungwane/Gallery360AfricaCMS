@@ -1,0 +1,155 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 30vh;
+    background: linear-gradient(#CEB89E, #616161);
+}
+
+.left-container {
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+    height: 100vh;
+    background-size:cover;
+    background-image: url('../../assets/images/Splashscreen.png');
+}
+.left-inner-container{
+    display: flex;
+    flex-direction: column;
+    align-self: center;    
+    justify-content: center;
+}
+.logo{
+    display: flex;
+    width: 80%;
+    height: 70%;
+    align-self: 'center';
+    justify-content: center;
+    margin-top: 10%;
+    
+}
+.title {
+    display: flex;
+    align-self:center;
+    margin-top: 20%;
+    flex-direction: row;
+}
+.title-name{
+    display: flex;
+    margin-top: 30%;
+    font-weight: bold;
+    font-size: 54px; 
+    font-family: 'Poppins';
+}
+.title-africa {
+    display: flex;
+    margin-left: 15px; 
+    font-weight: 400;
+}
+
+.right-container{
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+  background : linear-gradient(#CEB89E, #616161);
+  width: 35%;
+  height: 100vh;
+}
+.right-inner-container{
+    display: flex;
+    flex-direction: column;
+    align-self: 'center';
+    justify-content: center;
+  }
+
+.Name{
+    display:flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-self: center; 
+    justify-content: space-between; 
+    margin-top: 15%;
+    width: 60%;
+}
+
+
+.inputs {
+    display:flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-self: center; 
+    justify-content: space-between; 
+    margin-top: 3%;
+    width: 60%;
+}
+.password{
+    display:flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-self: center; 
+    justify-content: space-between; 
+    margin-top: 3%;
+    width: 60%;
+}
+  
+
+.title {
+    display: flex;
+    align-self: center;
+    margin-top: 2%;
+}
+
+.input {
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    width: 65%;
+ //   margin-left: 5%;
+    margin-top: 2%;
+}
+
+.button-submit{
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    width: 65%;
+    color: #0E1822;
+    margin-top: 5%;
+}
+
+.button-btn {
+    display:flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-self: center; 
+    justify-content: space-between; 
+    margin-top: 4%;
+    width: 78%;
+}
+
+.forgot-account {
+    display:flex; 
+    flex-direction: column;
+    justify-content: flex-start;
+    align-self: flex-start; 
+    justify-content: space-between;
+    width: 80%;     
+}
+
+.forgot-link {
+    display: flex;
+    align-self: flex-end; 
+    justify-content: flex-end;
+    margin-top: 5%;
+    color: #0E1822;
+}
+.sign-title{
+    display: flex;
+    color: aliceblue; 
+    font-family: 'Italic'; 
+    font-size: 12vh;
+    justify-content: center;
+    margin-top: 30%; 
+    align-self: 'center'; 
+}

@@ -3,7 +3,10 @@ import { Router } from '@angular/router';
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  sendEmailVerification,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
+  verifyBeforeUpdateEmail,
 } from 'firebase/auth';
 import {
   addDoc,
@@ -16,6 +19,7 @@ import {
   setDoc,
   where,
 } from 'firebase/firestore';
+import { async } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -30,6 +34,7 @@ export class AuthenticationService {
   constructor(private router: Router) {
     this.state.auth.onAuthStateChanged((user) => {
       if (user) {
+        
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user')!);
@@ -40,51 +45,62 @@ export class AuthenticationService {
     });
   }
 
-  onSignUp(userName: string, email: string, password: string) {
+   onSignUp(userName: string, email: string, password: string) {
+    console.log(userName, email, password);
     createUserWithEmailAndPassword(this.state.auth, email, password)
       .then(async (userCrdential) => {
         const user = userCrdential.user;
+        const actionCodeSettings = {
+          url: `https://gallery360africa.page.link/gallery360africa`,
+          iOS: {
+             bundleId: 'com.example.ios'
+          },
+          android: {
+            packageName: 'com.example.android',
+            installApp: true,
+            minimumVersion: '12'
+          },
+          handleCodeInApp: false
+        };
+         await sendEmailVerification(user,actionCodeSettings).then(() => {
+            alert("email has been sent");
+         }).catch((error) => {
+          alert(error);
+          //alert('unable to verify email')
+        //console.log(error);
 
-        await setDoc(doc(this.state.db, 'admin', user.uid), {
-          userName: userName,
-          email: email,
-          uid: user.uid,
         })
-          .then(() => {
-            const uid = this.state.auth.currentUser?.uid;
-            alert('your email was registerred successfully');
 
-            return this.router.navigate([
-              { uid: uid, userNames: userName, email: email },
-              '/Market',
-            ]);
-          })
-          .catch((error) => {
-            alert('Plase fill in your full information');
-          });
       })
       .catch((error) => {
-        alert('unable to sign up please chck your connectivity');
+       // alert('unable to sign up please check your connectivity');
+        console.log(error);
       });
   }
 
   onSignIn(email: string, password: string) {
     signInWithEmailAndPassword(this.state.auth, email, password).then(
       (user) => {
+        const authorisedUer =user.user.emailVerified
         const uid = user.user.uid;
-        onSnapshot(
-          query(collection(this.state.db, 'admin'), where('uid', '==', uid)),
-          (snapShot) => {
-            const userName = snapShot.docs.map((doc) => doc.data().userName);
-            // this.router.navigate(['about'], { relativeTo: this.route });
-            // return this.router.navigateByUrl('/Market', {
-            //   state: { id: `${uid}` },
-            // });
-            return this.router.navigate(['Market', `${uid}`]);
-          }
-        );
+        console.log(authorisedUer);
+
+        if(authorisedUer){
+          return this.router.navigate(['Market', `${uid}`]);
+        } else {
+          alert("Please verify your email address");
+        }
       }
     );
+  }
+
+  forgotPasswordReset(email: string) {
+    sendPasswordResetEmail(this.state.auth, email).then(() => {
+        alert("password has been sent to email");
+    }).catch((error) => {
+      alert("user not registered")
+      console.log(error)
+    })
   }
 
   get isMarket(): boolean {
