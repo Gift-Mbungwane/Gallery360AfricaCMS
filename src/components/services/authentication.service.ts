@@ -78,18 +78,27 @@ export class AuthenticationService {
       });
   }
 
-  onSignIn(email: string, password: string) {
+  onSignIn(email: any, password: string) {
     signInWithEmailAndPassword(this.state.auth, email, password).then(
       (user) => {
-        const authorisedUer =user.user.emailVerified
         const uid = user.user.uid;
-        console.log(authorisedUer);
-
-        if(authorisedUer){
-          return this.router.navigate(['Market', `${uid}`]);
-        } else {
-          alert("Please verify your email address");
-        }
+        onSnapshot(
+          query(
+            collection(this.state.db, 'admin'),
+            where('uid', '==', uid)
+          ),(snapShot) =>{
+            const data  = snapShot.docs.map((doc) => doc.data().email);
+            if(email == data) {
+              return this.router.navigate(['Market', `${uid}`]);
+            } else {
+                alert("Please contact the Administrator");
+            }
+          });
+        // if(authorisedUer){
+        //   return this.router.navigate(['Market', `${uid}`]);
+        // } else {
+        //   alert("Please verify your email address");
+        // }
       }
     );
   }

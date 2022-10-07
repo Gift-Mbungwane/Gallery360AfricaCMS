@@ -16,13 +16,13 @@ import { PaymentGatewayComponent } from 'src/components/payment-gateway/payment-
 import { PaymentSuccessComponent } from 'src/components/payment-success/payment-success.component';
 // import { ForgotPasswordComponent } from 'src/components/sign-in-screen/forgot-password.component';
 import { SignInScreenComponent } from 'src/components/sign-in-screen/sign-in-screen.component';
-import { SignUpScreenComponent } from 'src/components/sign-up-screen/sign-up-screen.component';
+// import { SignUpScreenComponent } from 'src/components/sign-up-screen/sign-up-screen.component';
 import { UserComponent } from 'src/components/user/user.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'SignIn', pathMatch: 'full' },
   { path: 'SignIn', component: SignInScreenComponent },
-  { path: 'SignUp', component: SignUpScreenComponent },
+  // { path: 'SignUp', component: SignUpScreenComponent },
   {
     path: 'Market/:id',
     component: MarketApprovalComponent,

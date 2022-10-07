@@ -43,6 +43,12 @@ export class PaymentGatewayComponent implements OnInit {
     //   return uid.id;
     // });
     this.uid = this.route.snapshot.paramMap.get('id');
+    /**
+     * payment link from user app should provide us with key to enable the paypal buttons
+     *  and ID to get items that the user is paying for.
+     * link example( https://gallery-360-africa.firebaseapp.com/Payment/{id}?{key})
+     * 
+     */
 
     // this.route.queryParamMap.subscribe((params) => {
     //   this.paramsObject = { ...params.keys, ...params };

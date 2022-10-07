@@ -45,10 +45,10 @@
                     [disabled]="primPassword.invalid || primEmail.invalid"
                     (click)="authenticationService.onSignIn(email.value, password.value)"
                     >Sign in</button>
-                    <div class="forgot-account">
+                    <!-- <div class="forgot-account">
                     <p style="color: '#FFFFFF'; align-self: center; margin-top:5%;">Don’t have an account?<a [routerLink]="['/SignUp']"
                         style="color: 'rgba(34, 24, 14, 1)';"> Sign Up</a></p>
-                    </div>
+                    </div> -->
                 </div>
                 <form [formGroup]="userPassword" class="password">
                     <div *ngIf="(primPassword.invalid && primPassword.touched && primPassword.dirty)">
