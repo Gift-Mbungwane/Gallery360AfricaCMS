@@ -39,7 +39,7 @@
                   </mdb-form-control>        
         </div>
         <div class="bottom-left-column">
-                <div class="card small-detailed-card" *ngFor="let data of data | searchFilter: searchTerm; index as i" [style.background-color]="data.transactionId === transactionId ? '#CEB89E' : '#FFFFFF'">
+                <div class="card small-detailed-card" *ngFor="let data of data | searchFilter: searchTerm; index as i" [style.background-color]="data.transactionId == transactionId ? '#CEB89E' : '#FFFFFF'">
                     <div
                     class="side-card-infor"
                      type="button"
@@ -63,7 +63,7 @@
                         <p class="buyerId-style-right">{{dataByUid.transactionId}}</p>
                     </div>
                     <div class="side-card-second-date">
-                        <p style="display:flex; font-size:18px; margin-left: 20%;">{{dataByUid.date}}</p> 
+                        <p style="display:flex; font-size:18px; margin-left: 15%;">{{dataByUid.date}}</p> 
                     </div>
                 </div>
                 <div class="side-right-address">
@@ -84,7 +84,7 @@
                 <div class="right-bottom-container" >
                     <div class="item-details-row" *ngFor="let dataByItem of dataByItem">
                       <div class="card bg-dark text-white item-details-card" >
-                        <img src="{{dataByItem.artUrl}}" class="card-img item-details-card-image" alt="Stony"/>
+                        <img src="{{dataByItem.artUrl}}" class="card-img item-details-card-image" alt="."/>
                         <div class="card-img-overlay">
                             <div class="card-title overlay-infor">
                                 <div>

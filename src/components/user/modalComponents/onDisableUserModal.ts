@@ -40,14 +40,16 @@ export class onDisableUserModal implements OnInit {
       const batch = doc(this.db, 'users', uid);
       setDoc(batch, { isEnabled: false, message: message }, { merge: true })
         .then(() => {
-          alert('This account is now suspended');
           this.close();
+          alert('This account is now suspended');
         })
         .catch((error) => {
+          this.close();
           alert('unable to update the');
         });
     } else {
-      alert('PLease add disapproving reason');
+      this.close();
+      alert('Please add disapproving reason');
     }
   }
 }

@@ -11,6 +11,7 @@ import {
   where,
 } from 'firebase/firestore';
 import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
+import * as moment from 'moment';
 import { AuthenticationService } from '../services/authentication.service';
 import { MarketService } from '../services/market.service';
 import { ModalComponent } from './modalComponent';
@@ -26,6 +27,7 @@ export class ExhibitionComponent implements OnInit {
   userName: any;
   db: any;
   datas: any;
+  // date: any;
   isEnabled: any;
   modalRef: MdbModalRef<ModalComponent> | null = null;
   isColor!: boolean;
@@ -52,6 +54,9 @@ export class ExhibitionComponent implements OnInit {
       ),
       (snapShot) => {
         const data = snapShot.docs.map((doc) => doc.data());
+        const date = snapShot.docs.map((document:any) => moment.utc(new Date(document.data().date)).format( "YYYY-MM-DD").toString());
+        console.log(date);
+        // this.date = date
         this.datas = data;
         const enabling = snapShot.docs.map((doc) => doc.data().isEnabled);
         this.isEnabled = enabling;
@@ -61,7 +66,7 @@ export class ExhibitionComponent implements OnInit {
 
   openModal(exhibitionImage: any) {
     this.modalService.open(ModalComponent, {
-      modalClass: 'modal-lg',
+      modalClass: 'modal-dialog-centered',
       data: { title: 'Custom title', exhibitionImage: `${exhibitionImage}` },
       keyboard: true,
       backdrop: true,
@@ -82,7 +87,7 @@ export class ExhibitionComponent implements OnInit {
 
   onDisable(exhibitionUid: any) {
     this.modalRef = this.modalService.open(onDisableExhibitionModal, {
-      modalClass: 'modal-lg',
+      modalClass: 'modal-dialog-centered',
       data: { exhibitionUid: `${exhibitionUid}` },
       keyboard: true,
       backdrop: true,

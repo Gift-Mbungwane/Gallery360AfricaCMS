@@ -73,7 +73,7 @@ export class MarketApprovalComponent implements OnInit {
 
   openModal(artUrl: any) {
     this.modalRef = this.modalService.open(ModalComponent, {
-      modalClass: 'modal-lg',
+      modalClass: 'modal-dialog-centered',
       data: { title: 'Custom title', artUrl: `${artUrl}` },
       keyboard: true,
       backdrop: true,
@@ -85,7 +85,7 @@ export class MarketApprovalComponent implements OnInit {
 
   onDisable(ImageUid: any) {
     this.modalRef = this.modalService.open(onDisableModal, {
-      modalClass: 'modal-lg',
+      modalClass: 'modal-dialog-centered',
       data: { title: 'Custom title', ImageUid: `${ImageUid}` },
       keyboard: true,
       backdrop: true,

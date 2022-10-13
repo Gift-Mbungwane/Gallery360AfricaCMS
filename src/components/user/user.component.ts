@@ -67,7 +67,7 @@ export class UserComponent implements OnInit {
 
   openModal(artUrl: any) {
     this.modalRef = this.modalService.open(ModalComponent, {
-      modalClass: 'modal-lg',
+      modalClass: 'modal-dialog-centered',
       data: { title: 'Custom title', artUrl: `${artUrl}` },
       keyboard: true,
       backdrop: true,
@@ -79,7 +79,7 @@ export class UserComponent implements OnInit {
 
   onDisable(uid: any) {
     this.modalRef = this.modalService.open(onDisableUserModal, {
-      modalClass: 'modal-lg',
+      modalClass: 'modal-dialog-centered',
       data: { title: 'Custom title', uid: `${uid}` },
       keyboard: true,
       backdrop: true,

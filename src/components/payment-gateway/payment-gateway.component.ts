@@ -114,10 +114,11 @@ export class PaymentGatewayComponent implements OnInit {
   }
 
   private initConfig(): void {
+    // const CLIENT_ID = process.env.CLIENT_ID;
     this.payPalConfig = {
       currency: 'USD',
       clientId:
-        'AUBnW3yDrThpaiculRFIsW4RSc9voYKWeYzk4feLT1Hj9pg6dAjyaWU3ndxqJHHb1cyL2Hh23I_rR-EK',
+      'AUBnW3yDrThpaiculRFIsW4RSc9voYKWeYzk4feLT1Hj9pg6dAjyaWU3ndxqJHHb1cyL2Hh23I_rR-EK',
       //clientId: this.paramsObject.params.key,
       createOrderOnClient: (data) =>
         <ICreateOrderRequest>{

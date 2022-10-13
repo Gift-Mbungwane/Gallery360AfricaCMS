@@ -40,14 +40,15 @@ export class onDisableArtistModal implements OnInit {
       const batch = doc(this.db, 'artists', artistUid);
       setDoc(batch, { isEnabled: false, message: message }, { merge: true })
         .then(() => {
-          alert('Art has been removed from Market');
           this.close();
+          alert('Art has been removed from Market');
         })
         .catch((error) => {
           alert('unable to update the');
         });
     } else {
-      alert('PLease add disapproving reason');
+      this.close();
+      alert('Please add disapproving reason');
     }
   }
 }

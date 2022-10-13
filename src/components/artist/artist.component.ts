@@ -57,7 +57,7 @@ export class ArtistComponent implements OnInit {
 
   openModal(artUrl: any) {
     this.modalService.open(ModalComponent, {
-      modalClass: 'modal-lg',
+      modalClass: 'modal-dialog-centered',
       data: { title: 'Custom title', artUrl: `${artUrl}` },
       keyboard: true,
       backdrop: true,
@@ -77,7 +77,7 @@ export class ArtistComponent implements OnInit {
 
   onDisable(artistUid: any) {
     this.modalRef = this.modalService.open(onDisableArtistModal, {
-      modalClass: 'modal-lg',
+      modalClass: 'modal-dialog-centered',
       data: { title: 'Custom title', artistUid: `${artistUid}` },
       keyboard: true,
       backdrop: true,

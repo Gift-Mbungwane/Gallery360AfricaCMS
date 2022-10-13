@@ -66,7 +66,7 @@ export class SignInScreenComponent implements OnInit {
 
   openModal(email: string) {
     this.modalRef = this.modalService.open(ForgotPasswordComponent, {
-      modalClass: 'modal-md',
+      modalClass: 'modal-dialog-centered',
       data: { title: 'Custom title', email: `${email}` }, 
       backdrop: true,
     });

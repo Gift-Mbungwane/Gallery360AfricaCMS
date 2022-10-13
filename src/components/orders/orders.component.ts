@@ -27,7 +27,7 @@ export class OrdersComponent implements OnInit {
   db: any;
   data!: Orders[] ;
   isDelivered!: boolean;
-  dataByUid: any;
+  dataByUid: any ;
   dataByItem: any;
   transactionId: any;
   searchTerm = '';
@@ -62,7 +62,7 @@ export class OrdersComponent implements OnInit {
         const artypes = snapShot.docs.map(
           (document: any) => document.data().items
         );
-        console.log(datas[0])
+       // console.log(datas[0])
         this.dataByItem = artypes[0];
         const sizes = snapShot.size;
         this.dataByUid = datas[0];
@@ -74,9 +74,10 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit(): void {
     this.data = this.allOrders;
+  
   }
 
-  viewMoreDetails(data: any): void {
+  viewMoreDetails(data: []): void {
     this.dataByUid = data;
     // console.log(data, 'this another specific data from click');
   }
@@ -91,7 +92,7 @@ export class OrdersComponent implements OnInit {
   }
   openModal(artUrl: any, artistName: any, artName: any) {
     this.modalRef = this.modalService.open(ModalComponent, {
-      modalClass: 'modal-lg',
+      modalClass: 'modal-dialog-centered',
       data: {
         title: 'Custom title',
         artUrl: `${artUrl}`,
@@ -110,18 +111,40 @@ export class OrdersComponent implements OnInit {
     const art = doc(this.db, 'payment', documentID);
     updateDoc(art, { isDelivered: true })
       .then(() => {
-        alert('Items have been delivered');
+        this.searchCurrentDelivered(documentID, "Items have been delivered");
       })
       .catch((error) => console.log('this error is on orders page'));
+
   }
 
   onNotDelivered(documentID: any): void {
     const art = doc(this.db, 'payment', documentID);
     updateDoc(art, { isDelivered: false })
       .then(() => {
-        alert('Items not delivered');
+        this.searchCurrentDelivered(documentID, "Items not delivered");
       })
       .catch((error) => console.log('this error is on orders page'));
+
+  }
+
+  searchCurrentDelivered(document: any, message: string): void {
+    
+    onSnapshot(
+      query(
+        collection(this.db, 'payment'),
+         where('documentID', '==', document)
+      ),
+      (snapShot: any) => {
+        const dataByUid = snapShot.docs.map((document: any) => document.data());
+        const items = snapShot.docs.map(
+          (document: any) => document.data().items
+        );
+       // console.log(datas[0])
+       this.dataByUid = dataByUid[0];
+       this.dataByItem = items[0];
+        alert(`${message}`);
+      }
+    );
   }
 
   search(value: string): void {

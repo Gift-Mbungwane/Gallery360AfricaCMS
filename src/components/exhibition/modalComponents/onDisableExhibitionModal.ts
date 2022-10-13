@@ -40,14 +40,16 @@ export class onDisableExhibitionModal implements OnInit {
       const batch = doc(this.db, 'exhibition', exhibitionUid);
       setDoc(batch, { isEnabled: false, message: message }, { merge: true })
         .then(() => {
-          alert('Exhibition has been removed from Exhibition list');
           this.close();
+          alert('Exhibition has been removed from Exhibition list');
         })
         .catch((error) => {
+          this.close();
           alert('unable to remove exhibition');
         });
     } else {
-      alert('PLease add disapproving reason');
+      this.close();
+      alert('Please add disapproving reason');
     }
   }
 }
