@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, ɵNgNoValidate } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   collection,
@@ -13,6 +13,7 @@ import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { onDisableArtistModal } from './modalComponents/onDisableArtistModal';
 import { AuthenticationService } from '../services/authentication.service';
 import { ModalComponent } from './modalComponent';
+
 
 @Component({
   selector: 'app-artist',
@@ -87,3 +88,38 @@ export class ArtistComponent implements OnInit {
     });
   }
 }
+
+
+/**
+ * 
+ * <vm-player controls>
+  <vm-video cross-origin="true" poster="https://media.vimejs.com/poster.png">
+    <!-- These are passed directly to the underlying HTML5 `<video>` element. -->
+    <!-- Why `data-src`? Lazy loading, you can always use `src` if you prefer.  -->
+    <!-- <source src="ho.mp4" type="video/mp4">
+    <source src="ho.ogg" type="video/ogg" > -->
+    <source data-src="{{data.introductionVideo || 'https://media.vimejs.com/720p.mp4'}}" type="video/mp4" />
+    <!-- <source data-src="{{data.introductionVideo.webm || 'https://media.vimejs.com/720p.mp4'}}" type="video/webm" /> -->
+    <!-- <track
+      default
+      kind="subtitles"
+      src="{{data.introductionVideo.mp4 || 'https://media.vimejs.com/720p.mp4'}}"
+      srclang="en"
+      label="English"
+    /> -->
+  </vm-video>
+  <vm-default-ui no-click-to-play>
+    <!-- We can place our own UI components here to extend the default UI. -->
+    <vm-ui>
+      <!-- Vime components. -->
+      <vm-click-to-play></vm-click-to-play>
+      <vm-spinner></vm-spinner>
+      <vm-poster></vm-poster>
+      <!-- Custom component. -->
+      <!-- <tap-sides-to-seek></tap-sides-to-seek> -->
+    </vm-ui>
+  </vm-default-ui>
+  <!-- ... -->
+</vm-player>
+ * 
+ * */ 

@@ -37,15 +37,15 @@
             </div>
         </nav>
         <!-- Navbar -->
-        <div style="display: flex; justify-content: center ;margin-top: 3.5%;width: 100%;">
+        <div style="display: flex; justify-content: center ;margin-top: 3.5%;width: 100%; background-color: black;">
             <div class="columns">
-                <div class="column"  *ngFor="let data of datas" >
+                <div class="column" *ngFor="let data of datas" >
                       <div class="card mb-1">
                         <div class="" style="display: flex; width: 100%;">
                           <div class="col-md-4" style="width: 40%;" mdbRipple rippleColor="light">
                             <img
                             height="100vh"
-                            src="{{data.photoUrl}}" 
+                            src="{{data.photoUrl || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqjYWb_kZ7jZ_aCJJdFjLqxS-DBaGsJGxopg&usqp=CAU'}}" 
                             type="button" 
                             (click)="openModal(data.photoUrl)"
                             class="img-fluid rounded-start hover-overlay"
@@ -68,7 +68,9 @@
                           </div>
                         </div>
                         <div>
-                            <video class="video d-md-flex justify-content-md-center align" controls src="{{data.videoUrl}}" type="video/mp4" scrolling="no" frameborder="0" allowfullscreen allowtransparency ></video>
+                          <!-- By default there are no controls so let's turn them on. -->
+                          <mat-video src="{{data.introductionVideo}}"></mat-video>
+                            <!-- <video class="video d-md-flex justify-content-md-center align" controls src="{{data.videoUrl}}" type="video/mp4" scrolling="no" frameborder="0" allowfullscreen allowtransparency ></video> -->
                           </div>
                       </div>
                 </div>
