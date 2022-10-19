@@ -15,6 +15,7 @@
                     aria-controls="fixedNavbarExample2" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
                 </button>
+                
                 <div mdbCollapse #fixedNavbarExample2="mdbCollapse" class="collapse navbar-collapse" id="fixedNavbarExample2">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item active">
@@ -60,17 +61,18 @@
                               </p>
                                 <div class="d-grid gap-0 d-md-flex justify-content-md-end">
                                     <button class="btn me-md-2" [disabled]="data.isEnabled" autocomplete="off" type="button"
-                                     (click)="approveArtist(data.artistUid)" style="color: '#0E1822'">Approve</button>
+                                     (click)="approveArtist(data.artistUid)" style="color: #FFFFFF; background-color: #0E1822">Approve</button>
                                     <button class="btn" type="button" autocomplete="off" (click)="onDisable(data.artistUid)"
-                                     [disabled]="!data.isEnabled" style="color: '#FF3636'">Decline</button>
+                                     [disabled]="!data.isEnabled" style="color: #FFFFFF; background-color: #FF3636">Decline</button>
                                 </div>
                             </div>
                           </div>
                         </div>
                         <div>
                           <!-- By default there are no controls so let's turn them on. -->
-                          <mat-video src="{{data.introductionVideo}}"></mat-video>
-                            <!-- <video class="video d-md-flex justify-content-md-center align" controls src="{{data.videoUrl}}" type="video/mp4" scrolling="no" frameborder="0" allowfullscreen allowtransparency ></video> -->
+                          <!-- <advanced-video [cldVid]="vid" controls></advanced-video> -->
+                          <video class="video d-md-flex justify-content-md-center align" controls src="{{data.introductionVideo}}" type="video/mp4, video/webm, video/ogg" scrolling="no" frameborder="0" allowfullscreen allowtransparency ></video>
+                            <!-- <video class="video d-md-flex justify-content-md-center align" controls src="{{data.introductionVideo}}" type="video/mp4, video/webm, video/ogg" scrolling="no" frameborder="0" allowfullscreen allowtransparency ></video> -->
                           </div>
                       </div>
                 </div>

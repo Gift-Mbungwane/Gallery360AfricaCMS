@@ -13,6 +13,17 @@ import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { onDisableArtistModal } from './modalComponents/onDisableArtistModal';
 import { AuthenticationService } from '../services/authentication.service';
 import { ModalComponent } from './modalComponent';
+import { videoCodec } from "@cloudinary/url-gen/actions/transcode";
+import { auto, vp9 } from '@cloudinary/url-gen/qualifiers/videoCodec';
+import {Cloudinary, CloudinaryVideo} from '@cloudinary/url-gen';
+
+// Import required actions and qualifiers.
+import {fill} from "@cloudinary/url-gen/actions/resize";
+import {byRadius} from "@cloudinary/url-gen/actions/roundCorners";
+import {FocusOn} from "@cloudinary/url-gen/qualifiers/focusOn";
+import {Gravity} from "@cloudinary/url-gen/qualifiers";
+import {AutoFocus} from "@cloudinary/url-gen/qualifiers/autoFocus";
+
 
 
 @Component({
@@ -22,11 +33,24 @@ import { ModalComponent } from './modalComponent';
 })
 export class ArtistComponent implements OnInit {
   userName!: string;
+  vid: CloudinaryVideo;
   uid: any;
   datas: any;
   db: any;
   isColor!: boolean;
   modalRef: MdbModalRef<ModalComponent> | null = null;
+  sources = [
+    {
+        type: 'mp4',
+        codecs: ['avc1.4d002a'],
+        transcode: videoCodec(auto())
+    },
+    {
+        type: 'webm',
+        codecs: ['vp8', 'vorbis'],
+        transcode: videoCodec(vp9())
+    }];
+  
 
   constructor(
     private router: Router,
@@ -52,8 +76,36 @@ export class ArtistComponent implements OnInit {
         
         const data = snapShot.docs.map((doc) => doc.data());
         this.datas = data;
+        const cld = new Cloudinary({
+          cloud: {
+            cloudName: 'demo',
+          }
+        }); 
+
+        
+
+        const dataVideo = data.map((doc) => doc.introductionVideo);
+        for(let i = 0; i <= dataVideo.length; i++) {
+            // console.log(dataVideo[i]);
+            this.vid = cld.video(`${dataVideo[i]}`);
+        }
+          // console.log(dataVideo.map(doc => doc));
+    
+        // Use the video with public ID, 'docs/walking_talking'.
+        // 
       }
     );
+
+    //
+       // Create and configure your Cloudinary instance.
+      
+  
+      // Apply the transformation.
+      // this.vid.resize(fill().width(150).height(150)
+      // .gravity(Gravity.autoGravity().autoFocus(AutoFocus.focusOn(FocusOn.faces())))) // Crop the video, focusing on the faces.
+      // .roundCorners(byRadius(20));    // Round the corners.
+  
+
   }
 
   openModal(artUrl: any) {
@@ -67,12 +119,12 @@ export class ArtistComponent implements OnInit {
 
   approveArtist(artistUid: any) {
     const batch = doc(this.db, 'artists', artistUid);
-    setDoc(batch, { isEnabled: true }, { merge: true })
+    setDoc(batch, { isEnabled: true, approveMessage: "Your account has been approved" }, { merge: true })
       .then(() => {
-        alert('Artist is Diplayed under Artist');
+        alert('Artist has been approved');
       })
       .catch((error) => {
-        alert('unable to update the');
+        alert('unable to update the artist, check your internet connection');
       });
   }
 

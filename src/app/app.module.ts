@@ -14,7 +14,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
-import { MatVideoModule } from 'mat-video';
+
 
 //PayPal
 import { NgxPayPalModule } from 'ngx-paypal';
@@ -73,6 +73,7 @@ import { OrdersComponent } from 'src/components/orders/orders.component';
 import { searchDateFilterPipe, SearchFilterPipe } from 'src/components/searchfilter/search-filter.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { ForgotPasswordComponent } from 'src/components/sign-in-screen/forgot-password.component';
+import { CloudinaryModule } from '@cloudinary/ng';
 
 //configure firebase
 const firebaseConfig = {
@@ -121,7 +122,6 @@ initializeApp(firebaseConfig);
     BrowserAnimationsModule,
     MatGridListModule,
     MatCardModule,
-    MatVideoModule,
     MatButtonModule,
     MatDatepickerModule,
     MatToolbarModule,
@@ -147,6 +147,7 @@ initializeApp(firebaseConfig);
     CdkAccordionModule,
     HttpClientModule,
     VimeModule,
+    CloudinaryModule,
     // AlertModule,
   ],
 

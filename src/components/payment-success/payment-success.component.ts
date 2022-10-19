@@ -6,6 +6,9 @@ import {
   doc,
   Firestore,
   getFirestore,
+  onSnapshot,
+  query,
+  where,
 } from 'firebase/firestore';
 
 @Component({
@@ -18,25 +21,36 @@ export class PaymentSuccessComponent implements OnInit {
   db: Firestore;
   constructor(private route: ActivatedRoute, private router: Router) {
     this.db = getFirestore();
-    // this.uid = this.route.params.subscribe((uid) => {
-    //   return uid.id;
-    // });
+    this.uid = this.route.snapshot.paramMap.get('id');
+    
     // window.location.pathname = '';
-
-    // this.uid = this.route.snapshot.paramMap.get('id');
-    //this.userName = this.route.snapshot.paramMap.get('A');
-    // this.route.queryParams.subscribe((params) => {
-    //   this.uid = params.id;
-    //   console.log(params.id);
-    // });
   }
 
   ngOnInit(): void {
-    // window.location.pathname = '';
-    // deleteDoc(doc(collection(this.db, 'cartItem', this.uid, 'items')))
-    //   .then(() => {
-    //     alert('item has been paid');
-    //   })
+    onSnapshot(
+      query(
+        collection(this.db, 'cartItem', this.uid, "items"),
+        where('uuid', '==', this.uid),
+        // where('status', '==', 'pending')
+      ),
+      (snapShot) => {
+       snapShot.docs.map((document) => {  
+          if (document.exists()){
+            for(let i = 0; i <= snapShot.size; i++) {
+              deleteDoc(doc(this.db, 'cartItem', this.uid, 'items', document.id))
+              .then(() => {
+                console.log("items removed");
+              })
+              .catch((error) => alert(error));
+            }
+          }
+      });
+        const sizes = snapShot.size;
+      }
+    );
+
+    // deleteDoc(doc(this.db, 'cartItem', this.uid, 'items'))
+    //   .then(() => {})
     //   .catch((error) => alert(error));
     //window.location.href.
   }

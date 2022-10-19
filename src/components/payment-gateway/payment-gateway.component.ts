@@ -210,7 +210,7 @@ export class PaymentGatewayComponent implements OnInit {
             items: this.datas,
             status: details.status,
           });
-          updateDoc(docRef, { documentID: docRef.id }).then(() => {this.router.navigateByUrl('Success')}).catch((error) => console.log(error));
+          updateDoc(docRef, { documentID: docRef.id }).then(() => {return this.router.navigate(['Success', `${this.uid}`]);}).catch((error) => console.log(error));
         });
       },
       onClientAuthorization: (data) => {
@@ -221,10 +221,12 @@ export class PaymentGatewayComponent implements OnInit {
         this.showSuccess = true;
       },
       onCancel: (data, actions) => {
-        console.log('OnCancel', data, actions);
+        window.location.href;
+        // return this.router.navigate(['Failure', `${this.uid}`]);
+        // console.log('OnCancel', data, actions);
       },
       onError: (err) => {
-        this.router.navigateByUrl('Failure');
+        return this.router.navigate(['Failure', `${this.uid}`]);
         //console.log('OnError', err);
       },
       // onClick: (data, actions) => {
