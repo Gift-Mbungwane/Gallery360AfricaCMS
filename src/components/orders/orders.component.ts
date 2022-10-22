@@ -51,6 +51,10 @@ export class OrdersComponent implements OnInit {
       this.isColor = true;
     }
     //Querying orders
+   
+  }
+
+  ngOnInit(): void {
     onSnapshot(
       query(
         collection(this.db, 'payment'),
@@ -59,20 +63,16 @@ export class OrdersComponent implements OnInit {
       ),
       (snapShot: any) => {
         const datas = snapShot.docs.map((document: any) => document.data());
-        const artypes = snapShot.docs.map(
-          (document: any) => document.data().items
-        );
-       // console.log(datas[0])
-        this.dataByItem = artypes[0];
+
+       // console.log(datas[0]);
+        this.transactionId = datas[0].transactionId;
         const sizes = snapShot.size;
         this.dataByUid = datas[0];
         this.data = datas;
-        //console.log(datas);
+        this.dataByItem = this.dataByUid.items;
       }
     );
-  }
-
-  ngOnInit(): void {
+    
     this.data = this.allOrders;
   
   }
@@ -107,42 +107,44 @@ export class OrdersComponent implements OnInit {
     });
   }
 
-  onDelivered(documentID: any): void {
+  onDelivered(documentID: any, transactionId: string): void {
     const art = doc(this.db, 'payment', documentID);
     updateDoc(art, { isDelivered: true })
       .then(() => {
-        this.searchCurrentDelivered(documentID, "Items have been delivered");
+        this.transactionId = transactionId;
+        this.searchCurrentDelivered(documentID, "Items have been delivered", true);
+        alert("Items have been delivered");
       })
       .catch((error) => console.log('this error is on orders page'));
 
   }
 
-  onNotDelivered(documentID: any): void {
+  onNotDelivered(documentID: any, transactionId: string): void {
     const art = doc(this.db, 'payment', documentID);
     updateDoc(art, { isDelivered: false })
       .then(() => {
-        this.searchCurrentDelivered(documentID, "Items not delivered");
+        this.transactionId = transactionId;
+        this.searchCurrentDelivered(documentID, "Items not delivered", false);
+        alert("Items not delivered");
       })
       .catch((error) => console.log('this error is on orders page'));
 
   }
 
-  searchCurrentDelivered(document: any, message: string): void {
+  searchCurrentDelivered(document: any, message: string, isDelivered: boolean): void {
     
     onSnapshot(
       query(
         collection(this.db, 'payment'),
          where('documentID', '==', document)
       ),
-      (snapShot: any) => {
-        const dataByUid = snapShot.docs.map((document: any) => document.data());
-        const items = snapShot.docs.map(
-          (document: any) => document.data().items
-        );
-       // console.log(datas[0])
-       this.dataByUid = dataByUid[0];
-       this.dataByItem = items[0];
-        alert(`${message}`);
+      (snapShot) => {
+        const dataByUid = snapShot.docs.map((document: any) => document.data()).map((doc) => doc);
+        console.log(isDelivered, "the current updated value");
+        console.log(dataByUid, "second object");
+        this.dataByUid = dataByUid[0];
+        this.dataByItem = this.dataByUid.items;
+        //alert(`${message}`);
       }
     );
   }
