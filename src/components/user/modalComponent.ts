@@ -5,33 +5,16 @@ import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   template: `
-    <div class="modal-content" style="width:calc(100vw - 480px);">
-      <!-- <div class="modal-header">
-        <button
-          type="button"
-          class="btn-close"
-          aria-label="Close"
-          (click)="close()"
-        ></button>
-      </div>
-      -->
-      <div>
+    <div class="modal-content modal">
         <img
           class="rounded"
-          style="width:calc(100vw - 480px);height: 90vh;"
+          style="width:100%;"
           src="{{ artUrl }}"
         />
-      </div>
-      <!--
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="close()">
-          Close
-        </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-      -->
     </div>
   `,
+    styleUrls: ['./user.component.scss'],
+
 })
 export class ModalComponent implements OnInit {
   artUrl: String | null = null;

@@ -5,24 +5,15 @@ import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   template: `
-    <div class="modal-content" style="width:calc(100vw - 480px);">
-      <!-- <div class="modal-header">
-        <button
-          type="button"
-          class="btn-close"
-          aria-label="Close"
-          (click)="close()"
-        ></button>
-      </div> -->
-      <div>
+    <div class="modal-content modal" >
         <img
           class="rounded"
-          style="width:calc(100vw - 480px);height: 90vh;"
+          style="width: 100%"
           src="{{ exhibitionImage }}"
         />
-      </div>
     </div>
   `,
+    styleUrls: ['./exhibition.component.scss'],
 })
 export class ModalComponent implements OnInit {
   exhibitionImage: String | null = null;

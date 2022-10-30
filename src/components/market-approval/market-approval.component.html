@@ -43,15 +43,14 @@
 
 <div style="display: flex; justify-content: center ;margin-top: 3.5%;width: 100%;">
 <div class="columns">
-    <div class="column"  *ngFor="let data of datas" >
+    <div class="column" *ngFor="let data of datas" >
           <div class="card mb-1">
             <div class="" style="display: flex; width: 100%;">
-              <div class="col-md-4" style="width: 40%;" mdbRipple rippleColor="light">
+              <div class="col-md-4" style="width: 40%; height:100%" mdbRipple rippleColor="light">
                 <img
                 type="button"
-                height="100vh"
                   src="{{data.artUrl}}"
-                  alt="Trendy Pants and Shoes"
+                  alt="Market image"
                   class="img-fluid rounded-start hover-overlay"
                   (click)="openModal(data.artUrl)"
                 />
@@ -67,7 +66,7 @@
                     <small class="text-muted">Last updated 3 mins ago</small>
                   </p> -->
                     <div class="d-grid gap-0 d-md-flex justify-content-md-end">
-                    <button class="btn me-md-2"   [disabled]="data.isEnabled" autocomplete="off" type="button" (click)="approveArt(data.ImageUid)"  style="color: #FFFFFF; background-color: #0E1822;">Approve</button>
+                    <button class="btn me-md-2" [disabled]="data.isEnabled" autocomplete="off" type="button" (click)="approveArt(data.ImageUid)"  style="color: #FFFFFF; background-color: #0E1822;">Approve</button>
                     <button class="btn" type="button" autocomplete="off" (click)="onDisable(data.ImageUid)" [disabled]="!data.isEnabled" style="color:#FFFFFF; background-color: #FF3636;">Decline</button>
                     </div>
                 </div>

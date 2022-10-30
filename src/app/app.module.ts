@@ -106,6 +106,7 @@ initializeApp(firebaseConfig);
     onDisableModal,
     onDisableArtistModal,
     onDisableUserModal,
+
     onDisableExhibitionModal,
     ModalComponent,
     OrdersComponent,

@@ -22,6 +22,7 @@ import { onDisableExhibitionModal } from './modalComponents/onDisableExhibitionM
   templateUrl: './exhibition.component.html',
   styleUrls: ['./exhibition.component.scss'],
 })
+
 export class ExhibitionComponent implements OnInit {
   uid: any;
   userName: any;
