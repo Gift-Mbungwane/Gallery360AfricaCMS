@@ -53,7 +53,6 @@ import { MdbScrollspyModule } from 'mdb-angular-ui-kit/scrollspy';
 import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
 import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
-import { VimeModule } from '@vime/angular';
 //
 import { CdkAccordionModule } from '@angular/cdk/accordion';
 //modals
@@ -73,7 +72,6 @@ import { OrdersComponent } from 'src/components/orders/orders.component';
 import { searchDateFilterPipe, SearchFilterPipe } from 'src/components/searchfilter/search-filter.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { ForgotPasswordComponent } from 'src/components/sign-in-screen/forgot-password.component';
-import { CloudinaryModule } from '@cloudinary/ng';
 
 //configure firebase
 const firebaseConfig = {
@@ -147,8 +145,6 @@ initializeApp(firebaseConfig);
     MdbValidationModule,
     CdkAccordionModule,
     HttpClientModule,
-    VimeModule,
-    CloudinaryModule,
     // AlertModule,
   ],
 

@@ -13,18 +13,6 @@ import { MdbModalRef, MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { onDisableArtistModal } from './modalComponents/onDisableArtistModal';
 import { AuthenticationService } from '../services/authentication.service';
 import { ModalComponent } from './modalComponent';
-import { videoCodec } from "@cloudinary/url-gen/actions/transcode";
-import { auto, vp9 } from '@cloudinary/url-gen/qualifiers/videoCodec';
-import {Cloudinary, CloudinaryVideo} from '@cloudinary/url-gen';
-
-// Import required actions and qualifiers.
-import {fill} from "@cloudinary/url-gen/actions/resize";
-import {byRadius} from "@cloudinary/url-gen/actions/roundCorners";
-import {FocusOn} from "@cloudinary/url-gen/qualifiers/focusOn";
-import {Gravity} from "@cloudinary/url-gen/qualifiers";
-import {AutoFocus} from "@cloudinary/url-gen/qualifiers/autoFocus";
-
-
 
 @Component({
   selector: 'app-artist',
@@ -33,25 +21,12 @@ import {AutoFocus} from "@cloudinary/url-gen/qualifiers/autoFocus";
 })
 export class ArtistComponent implements OnInit {
   userName!: string;
-  vid: CloudinaryVideo;
   uid: any;
   datas: any;
   db: any;
   isColor!: boolean;
   modalRef: MdbModalRef<ModalComponent> | null = null;
-  sources = [
-    {
-        type: 'mp4',
-        codecs: ['avc1.4d002a'],
-        transcode: videoCodec(auto())
-    },
-    {
-        type: 'webm',
-        codecs: ['vp8', 'vorbis'],
-        transcode: videoCodec(vp9())
-    }];
-  
-
+ 
   constructor(
     private router: Router,
     public authenticationService: AuthenticationService,
@@ -76,18 +51,13 @@ export class ArtistComponent implements OnInit {
         
         const data = snapShot.docs.map((doc) => doc.data());
         this.datas = data;
-        const cld = new Cloudinary({
-          cloud: {
-            cloudName: 'demo',
-          }
-        }); 
+       
 
         
 
         const dataVideo = data.map((doc) => doc.introductionVideo);
         for(let i = 0; i <= dataVideo.length; i++) {
             // console.log(dataVideo[i]);
-            this.vid = cld.video(`${dataVideo[i]}`);
         }
           // console.log(dataVideo.map(doc => doc));
     
