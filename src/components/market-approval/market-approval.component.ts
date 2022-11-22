@@ -60,6 +60,8 @@ export class MarketApprovalComponent implements OnInit {
       }
     );
   }
+
+  
   approveArt(ImageUid: any): void {
     const batch = doc(this.db, 'Market', ImageUid);
     setDoc(batch, { isEnabled: true }, { merge: true })
